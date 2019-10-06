@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/deepPurple700</color>
+    <color name="colorPrimaryDark">@color/deepPurple900</color>
+    <color name="colorAccent">@color/amber900</color>
+
+    <color name="white">#ffffff</color>
+    <color name="grey400">#BDBDBD</color>
+    <color name="black">#000000</color>
+
+    <color name="deepPurple700">#512DA8</color>
+    <color name="deepPurple900">#311B92</color>
+    
+    <color name="amber900">#ff7908</color>
+
+    <color name="green800">#2E7D32</color>
+
+</resources>

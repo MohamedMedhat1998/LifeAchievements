@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Life Achievements</string>
+    <string name="user_email_password">Username/Email/Phone</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password_u"><u>Forgot Password</u></string>
+    <string name="sign_up_u"><u>Sign Up</u></string>
+    <string name="sign_up">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="username">Username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="country">Country</string>
+    <string name="reset_question">How do you want to reset your password?</string>
+    <string name="use_phone_number">Use phone number</string>
+    <string name="use_email_address">Use email address</string>
+    <string name="next">Next</string>
+    <string name="reset_mobile_message">Please enter your mobile phone number</string>
+    <string name="reset_email_message">Please enter your email address</string>
+    <string name="code_sent_1">We have sent a code to</string>
+    <string name="code_sent_2">Please enter the code we sent to verify your account</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="verify">Verify</string>
+    <string name="resend">Resend</string>
+    <string name="new_password_message">Please choose a new password!</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm">Confirm</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rating_message">Like our app ?</string>
+    <string name="submit">Submit</string>
+</resources>
