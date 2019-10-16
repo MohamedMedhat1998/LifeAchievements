@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Life Achievements</string>
-    <string name="user_email_password">Username/Email/Phone</string>
+    <string name="user_email_phone">Username/Email/Phone</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="forgot_password_u"><u>Forgot Password</u></string>
@@ -49,4 +49,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="rating_message">Like our app ?</string>
     <string name="submit">Submit</string>
+    <string name="error_empty_field">This field is required</string>
+    <string name="error_no_match">Password doesn\'t match</string>
 </resources>

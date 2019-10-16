@@ -1,0 +1,22 @@
+mutation CreateUser(
+    $firstName: String!,
+    $lastName: String!,
+    $username: String!,
+    $gender: Gender!,
+    $phone: String!,
+    $email: String!,
+    $password: String!
+) {
+    createUser(data :{
+        first_name:$firstName,
+        last_name: $lastName,
+        username: $username,
+        gender: $gender,
+        phone: $phone,
+        email: $email,
+        password: $password
+    }){
+        id
+
+    }
+}
