@@ -17,6 +17,5 @@ mutation CreateUser(
         password: $password
     }){
         id
-
     }
 }

@@ -1,4 +1,4 @@
-package com.andalus.lifeachievements.ui.sign_in_fragment
+package com.andalus.lifeachievements.views
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.andalus.lifeachievements.R
+import com.andalus.lifeachievements.view_models.SignInViewModel
 
 class SignInFragment : Fragment() {
 

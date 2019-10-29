@@ -1,4 +1,4 @@
-package com.andalus.lifeachievements.ui.sign_in_fragment
+package com.andalus.lifeachievements.view_models
 
 import androidx.lifecycle.ViewModel
 

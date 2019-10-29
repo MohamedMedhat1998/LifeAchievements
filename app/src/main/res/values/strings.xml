@@ -51,4 +51,7 @@
     <string name="submit">Submit</string>
     <string name="error_empty_field">This field is required</string>
     <string name="error_no_match">Password doesn\'t match</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 </resources>

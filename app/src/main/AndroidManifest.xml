@@ -17,7 +17,7 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".ui.sign_activity.SignActivity">
+        <activity android:name=".views.SignActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
