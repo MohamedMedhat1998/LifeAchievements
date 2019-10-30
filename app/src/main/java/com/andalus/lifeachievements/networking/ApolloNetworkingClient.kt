@@ -54,13 +54,13 @@ class ApolloNetworkingClient {
                 Log.d("HAS ERRORS", response.hasErrors().toString())
 
                 if (response.hasErrors()) {
-                    response.errors().forEach {
+                    response.response().forEach {
                         Log.wtf("ERROR", it.customAttributes()["msg"].toString())
 
                     }
                 }
                 Log.wtf("DATA", response.data().toString())
-                Log.d("ID", "${response.data()?.createUser()?.errors()}")
+                Log.d("ID", "${response.data()?.createUser()?.response()}")
             }
 
         })

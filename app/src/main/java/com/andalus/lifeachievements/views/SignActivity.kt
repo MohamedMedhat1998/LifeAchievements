@@ -12,6 +12,9 @@ import kotlinx.android.synthetic.main.activity_sign.*
 
 class SignActivity : AppCompatActivity() {
 
+    private val SIGN_IN_FRAGMENT = 0
+    private val SIGN_UP_FRAGMENT = 1
+
     private lateinit var signActivityViewModel: SignActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,9 +26,14 @@ class SignActivity : AppCompatActivity() {
 
         vpSignActivity.adapter = SignPagerAdapter(supportFragmentManager)
 
-        signActivityViewModel.signedUp.observe(this, Observer {
+        signActivityViewModel.completeSignedUp.observe(this, Observer {
             if (it)
-                vpSignActivity.currentItem = 0
+                vpSignActivity.currentItem = SIGN_IN_FRAGMENT
+        })
+
+        signActivityViewModel.newSignUp.observe(this, Observer {
+            if (it)
+                vpSignActivity.currentItem = SIGN_UP_FRAGMENT
         })
     }
 }

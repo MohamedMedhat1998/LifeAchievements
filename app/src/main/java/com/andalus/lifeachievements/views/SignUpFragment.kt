@@ -18,12 +18,13 @@ import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.view_models.SignActivityViewModel
 import com.andalus.lifeachievements.view_models.SignUpViewModel
 import com.google.android.material.textfield.TextInputEditText
-import kotlinx.android.synthetic.main.sign_up_fragment.*
-import kotlinx.android.synthetic.main.sign_up_fragment.view.*
+import kotlinx.android.synthetic.main.fragment_sign_up.*
+import kotlinx.android.synthetic.main.fragment_sign_up.view.*
+
+const val PASSWORD_MINIMUM_LENGTH = 6
 
 class SignUpFragment : Fragment() {
 
-    private val PASSWORD_MINIMUM_LENGTH = 6
     private var currentError = ""
 
     companion object {
@@ -37,7 +38,7 @@ class SignUpFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.sign_up_fragment, container, false)
+        val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
 
         view.btnSignUp.setOnClickListener {
             if (::signUpViewModel.isInitialized) {
@@ -61,11 +62,11 @@ class SignUpFragment : Fragment() {
                     }
                     val user = User(
                         "",
-                        etFirstName.text.toString(),
-                        etLastName.text.toString(),
-                        etEmail.text.toString(),
-                        etPhone.text.toString(),
-                        etUsername.text.toString(),
+                        etFirstName.text.toString().trim(),
+                        etLastName.text.toString().trim(),
+                        etEmail.text.toString().trim(),
+                        etPhone.text.toString().trim(),
+                        etUsername.text.toString().trim(),
                         gender,
                         "",
                         spinnerCountries.selectedItem.toString(),
@@ -81,33 +82,33 @@ class SignUpFragment : Fragment() {
             activity?.run { ViewModelProviders.of(this).get(SignActivityViewModel::class.java) }
                 ?: throw Exception(Constants.ERROR_INVALID_ACTIVITY)
 
-        signUpViewModel.errors.observe(this, Observer {
+        signUpViewModel.response.observe(this, Observer {
             Log.d("Observer", "onChanged")
-            if (!it.isNullOrEmpty()) {
-                it.forEach { pair ->
-                    when (pair.first) {
+            if (!it.errors.isNullOrEmpty()) {
+                it.errors.forEach { error ->
+                    when (error.field) {
                         Constants.ERROR_USERNAME -> {
-                            etUsername.error = pair.second
+                            etUsername.error = error.message
                             etUsername.requestFocus()
                             currentError = ""
                         }
                         Constants.ERROR_EMAIL -> {
-                            etEmail.error = pair.second
+                            etEmail.error = error.message
                             etEmail.requestFocus()
                             currentError = ""
                         }
                         Constants.ERROR_PHONE -> {
-                            etPhone.error = pair.second
+                            etPhone.error = error.message
                             etPhone.requestFocus()
                             currentError = ""
                         }
                         Constants.ERROR_FAILURE -> {
                             Toast.makeText(
                                 view.context,
-                                pair.second,
+                                error.message,
                                 Toast.LENGTH_LONG
                             ).show()
-                            currentError = pair.second
+                            currentError = error.message
                         }
                     }
                 }
@@ -131,9 +132,10 @@ class SignUpFragment : Fragment() {
                 State.SuccessState -> {
                     pbLoading.visibility = View.INVISIBLE
                     tvError.visibility = View.INVISIBLE
-                    Toast.makeText(context,getString(R.string.sign_up_complete),Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, getString(R.string.sign_up_complete), Toast.LENGTH_LONG)
+                        .show()
                     btnSignUp.isEnabled = true
-                    signActivityViewModel.setSignedUp(true)
+                    signActivityViewModel.setSignedUp(true, etEmail.text.toString())
                 }
                 State.ErrorState -> {
                     pbLoading.visibility = View.INVISIBLE
@@ -148,7 +150,7 @@ class SignUpFragment : Fragment() {
     }
 
     private fun validateNonEmpty(textInputEditText: TextInputEditText): Boolean {
-        if (textInputEditText.text.isNullOrEmpty()) {
+        if (textInputEditText.text.toString().trim().isEmpty()) {
             textInputEditText.error = getString(R.string.error_empty_field)
             textInputEditText.requestFocus()
             return false
@@ -179,7 +181,7 @@ class SignUpFragment : Fragment() {
     }
 
     private fun validateEmailAddress(textInputEditText: TextInputEditText): Boolean {
-        if (Patterns.EMAIL_ADDRESS.matcher(textInputEditText.text.toString()).matches()) {
+        if (Patterns.EMAIL_ADDRESS.matcher(textInputEditText.text.toString().trim()).matches()) {
             return true
         }
         textInputEditText.error = getString(R.string.invalid_email)
@@ -188,7 +190,7 @@ class SignUpFragment : Fragment() {
     }
 
     private fun validatePhoneNumber(textInputEditText: TextInputEditText): Boolean {
-        if (Patterns.PHONE.matcher(textInputEditText.text.toString()).matches()) {
+        if (Patterns.PHONE.matcher(textInputEditText.text.toString().trim()).matches()) {
             return true
         }
         textInputEditText.error = getString(R.string.invalid_phone)

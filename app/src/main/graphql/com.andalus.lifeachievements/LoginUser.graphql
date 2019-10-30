@@ -1,0 +1,16 @@
+mutation Login (
+    $username:String!,
+    $password:String!
+){
+    loginUser(data :{
+        username:$username,
+        password:$password
+    }){
+        email
+        token
+        id
+        first_name
+        last_name
+        username
+    }
+}
