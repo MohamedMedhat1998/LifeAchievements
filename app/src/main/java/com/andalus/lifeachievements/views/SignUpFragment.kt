@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.sign_up_fragment.view.*
 class SignUpFragment : Fragment() {
 
     private val PASSWORD_MINIMUM_LENGTH = 6
+    private var currentError = ""
 
     companion object {
         fun newInstance() = SignUpFragment()
@@ -88,14 +89,17 @@ class SignUpFragment : Fragment() {
                         Constants.ERROR_USERNAME -> {
                             etUsername.error = pair.second
                             etUsername.requestFocus()
+                            currentError = ""
                         }
                         Constants.ERROR_EMAIL -> {
                             etEmail.error = pair.second
                             etEmail.requestFocus()
+                            currentError = ""
                         }
                         Constants.ERROR_PHONE -> {
                             etPhone.error = pair.second
                             etPhone.requestFocus()
+                            currentError = ""
                         }
                         Constants.ERROR_FAILURE -> {
                             Toast.makeText(
@@ -103,6 +107,7 @@ class SignUpFragment : Fragment() {
                                 pair.second,
                                 Toast.LENGTH_LONG
                             ).show()
+                            currentError = pair.second
                         }
                     }
                 }
@@ -112,34 +117,28 @@ class SignUpFragment : Fragment() {
         signUpViewModel.state.observe(this, Observer {
             when (it) {
                 State.NormalState -> {
-                    tvLoading.visibility = View.INVISIBLE
+                    pbLoading.visibility = View.INVISIBLE
                     tvError.visibility = View.INVISIBLE
-                    tvSuccess.visibility = View.INVISIBLE
-                    tvNormal.visibility = View.VISIBLE
                     btnSignUp.isEnabled = true
                     signActivityViewModel.setSignedUp(false)
                 }
                 State.LoadingState -> {
-                    tvLoading.visibility = View.VISIBLE
+                    pbLoading.visibility = View.VISIBLE
                     tvError.visibility = View.INVISIBLE
-                    tvSuccess.visibility = View.INVISIBLE
-                    tvNormal.visibility = View.INVISIBLE
                     btnSignUp.isEnabled = false
                     signActivityViewModel.setSignedUp(false)
                 }
                 State.SuccessState -> {
-                    tvLoading.visibility = View.INVISIBLE
+                    pbLoading.visibility = View.INVISIBLE
                     tvError.visibility = View.INVISIBLE
-                    tvSuccess.visibility = View.VISIBLE
-                    tvNormal.visibility = View.INVISIBLE
+                    Toast.makeText(context,getString(R.string.sign_up_complete),Toast.LENGTH_LONG).show()
                     btnSignUp.isEnabled = true
                     signActivityViewModel.setSignedUp(true)
                 }
                 State.ErrorState -> {
-                    tvLoading.visibility = View.INVISIBLE
+                    pbLoading.visibility = View.INVISIBLE
                     tvError.visibility = View.VISIBLE
-                    tvSuccess.visibility = View.INVISIBLE
-                    tvNormal.visibility = View.INVISIBLE
+                    tvError.text = currentError
                     btnSignUp.isEnabled = true
                     signActivityViewModel.setSignedUp(false)
                 }

@@ -237,48 +237,23 @@
 
         <TextView
             android:id="@+id/tvError"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Error"
+            android:textColor="@color/redA700"
             app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout9" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout9"
+            tools:text="Error" />
 
-        <TextView
-            android:id="@+id/tvNormal"
+        <ProgressBar
+            android:id="@+id/pbLoading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Normal"
             app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
-            app:layout_constraintStart_toEndOf="@+id/tvError"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout9" />
-
-        <TextView
-            android:id="@+id/tvLoading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Loading"
-            app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
-            app:layout_constraintStart_toEndOf="@+id/tvNormal"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout9" />
-
-        <TextView
-            android:id="@+id/tvSuccess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Success"
-            app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
-            app:layout_constraintStart_toEndOf="@+id/tvLoading"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout9" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
