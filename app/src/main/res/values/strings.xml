@@ -54,4 +54,7 @@
     <string name="gender">Gender</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="password_minimum_length">Password length cannot be less than 6 characters</string>
+    <string name="invalid_email">Invalid email address</string>
+    <string name="invalid_phone">Invalid phone number</string>
 </resources>

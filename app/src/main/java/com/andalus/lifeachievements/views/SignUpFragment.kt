@@ -2,6 +2,7 @@ package com.andalus.lifeachievements.views
 
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,8 @@ import kotlinx.android.synthetic.main.sign_up_fragment.view.*
 
 class SignUpFragment : Fragment() {
 
+    private val PASSWORD_MINIMUM_LENGTH = 6
+
     companion object {
         fun newInstance() = SignUpFragment()
     }
@@ -33,7 +36,6 @@ class SignUpFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.sign_up_fragment, container, false)
 
         view.btnSignUp.setOnClickListener {
@@ -46,7 +48,10 @@ class SignUpFragment : Fragment() {
                     validateNonEmpty(etUsername) &&
                     validateNonEmpty(etPassword) &&
                     validateNonEmpty(etConfirmPassword) &&
-                    validateSimilarity(etPassword, etConfirmPassword)
+                    validatePasswordLength(etPassword) &&
+                    validateSimilarity(etPassword, etConfirmPassword) &&
+                    validatePhoneNumber(etPhone) &&
+                    validateEmailAddress(etEmail)
                 ) {
                     val gender: Gender = when (rgGender.checkedRadioButtonId) {
                         R.id.rbMale -> Gender.MALE
@@ -156,15 +161,39 @@ class SignUpFragment : Fragment() {
         firstTextInputEditText: TextInputEditText,
         secondTextInputEditText: TextInputEditText
     ): Boolean {
-        if (validateNonEmpty(firstTextInputEditText) && validateNonEmpty(secondTextInputEditText)) {
-            if (firstTextInputEditText.text.toString() != secondTextInputEditText.text.toString()) {
-                firstTextInputEditText.error = getString(R.string.error_no_match)
-                secondTextInputEditText.error = getString(R.string.error_no_match)
-                firstTextInputEditText.requestFocus()
-                return false
-            }
+        if (firstTextInputEditText.text.toString() != secondTextInputEditText.text.toString()) {
+            firstTextInputEditText.error = getString(R.string.error_no_match)
+            secondTextInputEditText.error = getString(R.string.error_no_match)
+            firstTextInputEditText.requestFocus()
+            return false
+        }
+        return true
+    }
+
+    private fun validatePasswordLength(textInputEditText: TextInputEditText): Boolean {
+        if (textInputEditText.text.toString().length < PASSWORD_MINIMUM_LENGTH) {
+            textInputEditText.error = getString(R.string.password_minimum_length)
+            textInputEditText.requestFocus()
+            return false
+        }
+        return true
+    }
+
+    private fun validateEmailAddress(textInputEditText: TextInputEditText): Boolean {
+        if (Patterns.EMAIL_ADDRESS.matcher(textInputEditText.text.toString()).matches()) {
             return true
         }
+        textInputEditText.error = getString(R.string.invalid_email)
+        textInputEditText.requestFocus()
+        return false
+    }
+
+    private fun validatePhoneNumber(textInputEditText: TextInputEditText): Boolean {
+        if (Patterns.PHONE.matcher(textInputEditText.text.toString()).matches()) {
+            return true
+        }
+        textInputEditText.error = getString(R.string.invalid_phone)
+        textInputEditText.requestFocus()
         return false
     }
 
