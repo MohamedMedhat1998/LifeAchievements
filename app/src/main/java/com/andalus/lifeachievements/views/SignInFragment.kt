@@ -10,12 +10,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
 import com.andalus.lifeachievements.utils.Constants
+import com.andalus.lifeachievements.utils.Functions
+import com.andalus.lifeachievements.validations.CanValidateNonEmpty
 import com.andalus.lifeachievements.view_models.SignActivityViewModel
 import com.andalus.lifeachievements.view_models.SignInViewModel
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 
-class SignInFragment : Fragment() {
+class SignInFragment : Fragment(), CanValidateNonEmpty {
 
     companion object {
         fun newInstance() = SignInFragment()
@@ -39,7 +42,6 @@ class SignInFragment : Fragment() {
             if (!it.isNullOrEmpty()) {
                 etUserEmailPhone.setText(it)
                 etPassword.requestFocus()
-                Log.d("login", "email changed")
             }
         })
 
@@ -47,8 +49,24 @@ class SignInFragment : Fragment() {
             signActivityViewModel.setNewSignUp(true)
         }
 
+        view.btnLogin.setOnClickListener {
+            if (validateNonEmpty(etUserEmailPhone) && validateNonEmpty(etPassword)) {
+                signInViewModel.signIn(etUserEmailPhone.text.toString(), etPassword.text.toString())
+            }
+        }
+
+        signInViewModel.response.observe(this, Observer {
+            Log.d("Sign In","Observed")
+            it.errors.forEach { error ->
+                Log.d(error.field, error.message)
+            }
+        })
+
         return view
     }
 
+    override fun validateNonEmpty(textInputEditText: TextInputEditText): Boolean {
+        return Functions.validateNonEmpty.invoke(textInputEditText)
+    }
 
 }

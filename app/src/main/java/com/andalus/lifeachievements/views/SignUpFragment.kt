@@ -2,7 +2,6 @@ package com.andalus.lifeachievements.views
 
 import android.os.Bundle
 import android.util.Log
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,15 +14,16 @@ import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.models.User
 import com.andalus.lifeachievements.type.Gender
 import com.andalus.lifeachievements.utils.Constants
+import com.andalus.lifeachievements.utils.Functions
+import com.andalus.lifeachievements.validations.*
 import com.andalus.lifeachievements.view_models.SignActivityViewModel
 import com.andalus.lifeachievements.view_models.SignUpViewModel
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up.view.*
 
-const val PASSWORD_MINIMUM_LENGTH = 6
-
-class SignUpFragment : Fragment() {
+class SignUpFragment : Fragment(), CanValidatePhoneNumber, CanValidateEmailAddress,
+    CanValidatePasswordLength, CanValidateSimilarity,CanValidateNonEmpty {
 
     private var currentError = ""
 
@@ -40,50 +40,47 @@ class SignUpFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
 
-        view.btnSignUp.setOnClickListener {
-            if (::signUpViewModel.isInitialized) {
-                if (
-                    validateNonEmpty(etFirstName) &&
-                    validateNonEmpty(etLastName) &&
-                    validateNonEmpty(etEmail) &&
-                    validateNonEmpty(etPhone) &&
-                    validateNonEmpty(etUsername) &&
-                    validateNonEmpty(etPassword) &&
-                    validateNonEmpty(etConfirmPassword) &&
-                    validatePasswordLength(etPassword) &&
-                    validateSimilarity(etPassword, etConfirmPassword) &&
-                    validatePhoneNumber(etPhone) &&
-                    validateEmailAddress(etEmail)
-                ) {
-                    val gender: Gender = when (rgGender.checkedRadioButtonId) {
-                        R.id.rbMale -> Gender.MALE
-                        R.id.rbFemale -> Gender.FEMALE
-                        else -> Gender.MALE
-                    }
-                    val user = User(
-                        "",
-                        etFirstName.text.toString().trim(),
-                        etLastName.text.toString().trim(),
-                        etEmail.text.toString().trim(),
-                        etPhone.text.toString().trim(),
-                        etUsername.text.toString().trim(),
-                        gender,
-                        "",
-                        spinnerCountries.selectedItem.toString(),
-                        etPassword.text.toString()
-                    )
-                    signUpViewModel.signUp(user)
-                }
-            }
-        }
-
         signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
         signActivityViewModel =
             activity?.run { ViewModelProviders.of(this).get(SignActivityViewModel::class.java) }
                 ?: throw Exception(Constants.ERROR_INVALID_ACTIVITY)
 
+        view.btnSignUp.setOnClickListener {
+            if (
+                validateNonEmpty(etFirstName) &&
+                validateNonEmpty(etLastName) &&
+                validateNonEmpty(etEmail) &&
+                validateNonEmpty(etPhone) &&
+                validateNonEmpty(etUsername) &&
+                validateNonEmpty(etPassword) &&
+                validateNonEmpty(etConfirmPassword) &&
+                validatePasswordLength(etPassword) &&
+                validateSimilarity(etPassword, etConfirmPassword) &&
+                validatePhoneNumber(etPhone) &&
+                validateEmailAddress(etEmail)
+            ) {
+                val gender: Gender = when (rgGender.checkedRadioButtonId) {
+                    R.id.rbMale -> Gender.MALE
+                    R.id.rbFemale -> Gender.FEMALE
+                    else -> Gender.MALE
+                }
+                val user = User(
+                    "",
+                    etFirstName.text.toString().trim(),
+                    etLastName.text.toString().trim(),
+                    etEmail.text.toString().trim(),
+                    etPhone.text.toString().trim(),
+                    etUsername.text.toString().trim(),
+                    gender,
+                    "",
+                    spinnerCountries.selectedItem.toString(),
+                    etPassword.text.toString()
+                )
+                signUpViewModel.signUp(user)
+            }
+        }
+
         signUpViewModel.response.observe(this, Observer {
-            Log.d("Observer", "onChanged")
             if (!it.errors.isNullOrEmpty()) {
                 it.errors.forEach { error ->
                     when (error.field) {
@@ -149,53 +146,27 @@ class SignUpFragment : Fragment() {
         return view
     }
 
-    private fun validateNonEmpty(textInputEditText: TextInputEditText): Boolean {
-        if (textInputEditText.text.toString().trim().isEmpty()) {
-            textInputEditText.error = getString(R.string.error_empty_field)
-            textInputEditText.requestFocus()
-            return false
-        }
-        return true
+    override fun validateNonEmpty(textInputEditText: TextInputEditText): Boolean {
+        return Functions.validateNonEmpty.invoke(textInputEditText)
     }
 
-    private fun validateSimilarity(
+    override fun validateSimilarity(
         firstTextInputEditText: TextInputEditText,
         secondTextInputEditText: TextInputEditText
     ): Boolean {
-        if (firstTextInputEditText.text.toString() != secondTextInputEditText.text.toString()) {
-            firstTextInputEditText.error = getString(R.string.error_no_match)
-            secondTextInputEditText.error = getString(R.string.error_no_match)
-            firstTextInputEditText.requestFocus()
-            return false
-        }
-        return true
+        return Functions.validateSimilarity.invoke(firstTextInputEditText, secondTextInputEditText)
     }
 
-    private fun validatePasswordLength(textInputEditText: TextInputEditText): Boolean {
-        if (textInputEditText.text.toString().length < PASSWORD_MINIMUM_LENGTH) {
-            textInputEditText.error = getString(R.string.password_minimum_length)
-            textInputEditText.requestFocus()
-            return false
-        }
-        return true
+    override fun validatePasswordLength(textInputEditText: TextInputEditText): Boolean {
+        return Functions.validatePasswordLength.invoke(textInputEditText)
     }
 
-    private fun validateEmailAddress(textInputEditText: TextInputEditText): Boolean {
-        if (Patterns.EMAIL_ADDRESS.matcher(textInputEditText.text.toString().trim()).matches()) {
-            return true
-        }
-        textInputEditText.error = getString(R.string.invalid_email)
-        textInputEditText.requestFocus()
-        return false
+    override fun validateEmailAddress(textInputEditText: TextInputEditText): Boolean {
+        return Functions.validateEmailAddress.invoke(textInputEditText)
     }
 
-    private fun validatePhoneNumber(textInputEditText: TextInputEditText): Boolean {
-        if (Patterns.PHONE.matcher(textInputEditText.text.toString().trim()).matches()) {
-            return true
-        }
-        textInputEditText.error = getString(R.string.invalid_phone)
-        textInputEditText.requestFocus()
-        return false
+    override fun validatePhoneNumber(textInputEditText: TextInputEditText): Boolean {
+        return Functions.validatePhoneNumber.invoke(textInputEditText)
     }
 
 }

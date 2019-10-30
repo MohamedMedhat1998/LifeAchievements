@@ -18,6 +18,13 @@ class Constants {
 
         const val ERROR_INVALID_ACTIVITY = "Invalid Activity"
 
+        const val INVALID_PHONE_NUMBER = "Invalid phone number"
+        const val INVALID_EMAIL_ADDRESS = "Invalid email address"
+
+        const val PASSWORD_LENGTH_MESSAGE = "Password length cannot be less than 6 characters"
+        const val PASSWORD_NO_MATCH_MESSAGE = "Password didn't match"
+        const val REQUIRED_MESSAGE = "This field is required"
+
     }
 
 }

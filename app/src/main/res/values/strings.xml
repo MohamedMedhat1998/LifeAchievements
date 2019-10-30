@@ -49,13 +49,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="rating_message">Like our app ?</string>
     <string name="submit">Submit</string>
-    <string name="error_empty_field">This field is required</string>
-    <string name="error_no_match">Password doesn\'t match</string>
     <string name="gender">Gender</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-    <string name="password_minimum_length">Password length cannot be less than 6 characters</string>
-    <string name="invalid_email">Invalid email address</string>
-    <string name="invalid_phone">Invalid phone number</string>
     <string name="sign_up_complete">Successfully Signed Up!</string>
 </resources>
