@@ -2,6 +2,7 @@ package com.andalus.lifeachievements.utils
 
 import android.util.Patterns
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class Functions {
 
@@ -56,6 +57,10 @@ class Functions {
             } else {
                 true
             }
+        }
+
+        val removeError: (TextInputEditText) -> Unit = {
+            it.error = null
         }
     }
 

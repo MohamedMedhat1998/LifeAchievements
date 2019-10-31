@@ -1,4 +1,4 @@
-package com.andalus.lifeachievements.validations
+package com.andalus.lifeachievements.behaviors
 
 import com.google.android.material.textfield.TextInputEditText
 

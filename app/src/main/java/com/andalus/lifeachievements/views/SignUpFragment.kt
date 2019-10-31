@@ -1,7 +1,6 @@
 package com.andalus.lifeachievements.views
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
+import com.andalus.lifeachievements.behaviors.*
 import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.models.User
 import com.andalus.lifeachievements.type.Gender
 import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.utils.Functions
-import com.andalus.lifeachievements.validations.*
 import com.andalus.lifeachievements.view_models.SignActivityViewModel
 import com.andalus.lifeachievements.view_models.SignUpViewModel
 import com.google.android.material.textfield.TextInputEditText
@@ -23,7 +22,8 @@ import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up.view.*
 
 class SignUpFragment : Fragment(), CanValidatePhoneNumber, CanValidateEmailAddress,
-    CanValidatePasswordLength, CanValidateSimilarity,CanValidateNonEmpty {
+    CanValidatePasswordLength, CanValidateSimilarity, CanValidateNonEmpty, CanResetErrors {
+
 
     private var currentError = ""
 
@@ -77,6 +77,15 @@ class SignUpFragment : Fragment(), CanValidatePhoneNumber, CanValidateEmailAddre
                     etPassword.text.toString()
                 )
                 signUpViewModel.signUp(user)
+                resetErrors(
+                    etFirstName,
+                    etLastName,
+                    etEmail,
+                    etPhone,
+                    etUsername,
+                    etPassword,
+                    etConfirmPassword
+                )
             }
         }
 
@@ -167,6 +176,12 @@ class SignUpFragment : Fragment(), CanValidatePhoneNumber, CanValidateEmailAddre
 
     override fun validatePhoneNumber(textInputEditText: TextInputEditText): Boolean {
         return Functions.validatePhoneNumber.invoke(textInputEditText)
+    }
+
+    override fun resetErrors(vararg textInputEditText: TextInputEditText) {
+        textInputEditText.forEach {
+            Functions.removeError.invoke(it)
+        }
     }
 
 }

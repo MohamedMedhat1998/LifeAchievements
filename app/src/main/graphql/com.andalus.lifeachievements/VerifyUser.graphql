@@ -1,0 +1,18 @@
+mutation Verify(
+    $account: String!,
+    $code:String!
+){
+    verifyRegister(data: {
+        username: $account,
+        register_code: $code
+    }){
+        id
+        created_at
+        first_name
+        gender
+        last_name
+        picture
+        rate
+        username
+    }
+}

@@ -12,6 +12,7 @@ class Constants {
         const val ERROR_FAILURE = "failure"
 
         const val ERROR_USERNAME = "username"
+        const val ERROR_PASSWORD = "password"
         const val ERROR_PHONE = "phone"
         const val ERROR_EMAIL = "email"
         const val ERROR_UNVERIFIED = "message"

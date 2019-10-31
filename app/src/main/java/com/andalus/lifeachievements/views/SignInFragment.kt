@@ -1,24 +1,28 @@
 package com.andalus.lifeachievements.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
+import com.andalus.lifeachievements.behaviors.CanResetErrors
+import com.andalus.lifeachievements.behaviors.CanValidateNonEmpty
+import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.utils.Functions
-import com.andalus.lifeachievements.validations.CanValidateNonEmpty
 import com.andalus.lifeachievements.view_models.SignActivityViewModel
 import com.andalus.lifeachievements.view_models.SignInViewModel
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 
-class SignInFragment : Fragment(), CanValidateNonEmpty {
+class SignInFragment : Fragment(), CanValidateNonEmpty, CanResetErrors {
 
     companion object {
         fun newInstance() = SignInFragment()
@@ -26,6 +30,8 @@ class SignInFragment : Fragment(), CanValidateNonEmpty {
 
     private lateinit var signInViewModel: SignInViewModel
     private lateinit var signActivityViewModel: SignActivityViewModel
+
+    private var currentError = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,13 +58,63 @@ class SignInFragment : Fragment(), CanValidateNonEmpty {
         view.btnLogin.setOnClickListener {
             if (validateNonEmpty(etUserEmailPhone) && validateNonEmpty(etPassword)) {
                 signInViewModel.signIn(etUserEmailPhone.text.toString(), etPassword.text.toString())
+                resetErrors(etUserEmailPhone,etPassword)
             }
         }
 
         signInViewModel.response.observe(this, Observer {
-            Log.d("Sign In","Observed")
+            Log.d("Sign In", "Observed")
             it.errors.forEach { error ->
-                Log.d(error.field, error.message)
+                when (error.field) {
+                    Constants.ERROR_FAILURE -> {
+                        currentError = error.message
+                        Toast.makeText(context, error.message, Toast.LENGTH_LONG).show()
+                    }
+                    Constants.ERROR_UNVERIFIED -> {
+                        currentError = ""
+                        startActivity(Intent(activity, VerificationActivity::class.java))
+                    }
+                    Constants.ERROR_USERNAME -> {
+                        currentError = ""
+                        etUserEmailPhone.error = error.message
+                        etUserEmailPhone.requestFocus()
+                    }
+                    Constants.ERROR_PASSWORD -> {
+                        currentError = ""
+                        etPassword.error = error.message
+                        etUserEmailPhone.requestFocus()
+                    }
+                }
+            }
+        })
+
+        signInViewModel.state.observe(this, Observer {
+            when (it) {
+                State.NormalState -> {
+                    btnLogin.isEnabled = true
+                    tvError.visibility = View.INVISIBLE
+                    pbLoading.visibility = View.INVISIBLE
+                }
+                State.LoadingState -> {
+                    btnLogin.isEnabled = false
+                    tvError.visibility = View.INVISIBLE
+                    pbLoading.visibility = View.VISIBLE
+                }
+                State.SuccessState -> {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.logged_in_complete),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    startActivity(Intent(activity, HomeActivity::class.java))
+                    activity?.run { finish() }
+                }
+                State.ErrorState -> {
+                    btnLogin.isEnabled = true
+                    tvError.visibility = View.VISIBLE
+                    tvError.text = currentError
+                    pbLoading.visibility = View.INVISIBLE
+                }
             }
         })
 
@@ -67,6 +123,12 @@ class SignInFragment : Fragment(), CanValidateNonEmpty {
 
     override fun validateNonEmpty(textInputEditText: TextInputEditText): Boolean {
         return Functions.validateNonEmpty.invoke(textInputEditText)
+    }
+
+    override fun resetErrors(vararg textInputEditText: TextInputEditText) {
+        textInputEditText.forEach {
+            Functions.removeError.invoke(it)
+        }
     }
 
 }
