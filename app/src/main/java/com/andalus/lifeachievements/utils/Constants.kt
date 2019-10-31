@@ -17,6 +17,7 @@ class Constants {
         const val ERROR_PHONE = "phone"
         const val ERROR_EMAIL = "email"
         const val ERROR_UNVERIFIED = "message"
+        const val ERROR_REGISTRATION_CODE = "register_code"
 
         const val ERROR_INVALID_ACTIVITY = "Invalid Activity"
 

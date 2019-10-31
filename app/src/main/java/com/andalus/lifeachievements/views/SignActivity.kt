@@ -7,13 +7,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
 import com.andalus.lifeachievements.adapters.SignPagerAdapter
+import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.view_models.SignActivityViewModel
 import kotlinx.android.synthetic.main.activity_sign.*
 
-class SignActivity : AppCompatActivity() {
+private const val SIGN_UP_FRAGMENT = 1
+private const val SIGN_IN_FRAGMENT = 0
 
-    private val SIGN_IN_FRAGMENT = 0
-    private val SIGN_UP_FRAGMENT = 1
+class SignActivity : AppCompatActivity() {
 
     private lateinit var signActivityViewModel: SignActivityViewModel
 
@@ -25,6 +26,9 @@ class SignActivity : AppCompatActivity() {
         signActivityViewModel = ViewModelProviders.of(this).get(SignActivityViewModel::class.java)
 
         vpSignActivity.adapter = SignPagerAdapter(supportFragmentManager)
+
+        if (intent.hasExtra(Constants.EMAIL_KEY))
+            signActivityViewModel.setEmailAddress(intent.extras!!.getString(Constants.EMAIL_KEY)!!)
 
         signActivityViewModel.completeSignedUp.observe(this, Observer {
             if (it)

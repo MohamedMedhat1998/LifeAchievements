@@ -54,4 +54,5 @@
     <string name="female">Female</string>
     <string name="sign_up_complete">Successfully Signed Up!</string>
     <string name="logged_in_complete">Successfully logged in!</string>
+    <string name="account_verification_complete">Account verified successfully!</string>
 </resources>

@@ -18,4 +18,8 @@ class SignActivityViewModel : ViewModel() {
         newSignUp.value = signed
     }
 
+    fun setEmailAddress(email: String){
+        emailAddress.value = email
+    }
+
 }
