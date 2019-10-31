@@ -1,8 +1,8 @@
 package com.andalus.lifeachievements.behaviors
 
-import com.google.android.material.textfield.TextInputEditText
+import android.widget.EditText
 
 interface CanValidateNonEmpty {
 
-    fun validateNonEmpty(textInputEditText: TextInputEditText): Boolean
+    fun validateNonEmpty(editText: EditText): Boolean
 }

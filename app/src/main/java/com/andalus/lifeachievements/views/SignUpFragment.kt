@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,7 +18,6 @@ import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.utils.Functions
 import com.andalus.lifeachievements.view_models.SignActivityViewModel
 import com.andalus.lifeachievements.view_models.SignUpViewModel
-import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up.view.*
 
@@ -155,31 +155,31 @@ class SignUpFragment : Fragment(), CanValidatePhoneNumber, CanValidateEmailAddre
         return view
     }
 
-    override fun validateNonEmpty(textInputEditText: TextInputEditText): Boolean {
-        return Functions.validateNonEmpty.invoke(textInputEditText)
+    override fun validateNonEmpty(editText: EditText): Boolean {
+        return Functions.validateNonEmpty.invoke(editText)
     }
 
     override fun validateSimilarity(
-        firstTextInputEditText: TextInputEditText,
-        secondTextInputEditText: TextInputEditText
+        firstEditText: EditText,
+        secondEditText: EditText
     ): Boolean {
-        return Functions.validateSimilarity.invoke(firstTextInputEditText, secondTextInputEditText)
+        return Functions.validateSimilarity.invoke(firstEditText, secondEditText)
     }
 
-    override fun validatePasswordLength(textInputEditText: TextInputEditText): Boolean {
-        return Functions.validatePasswordLength.invoke(textInputEditText)
+    override fun validatePasswordLength(editText: EditText): Boolean {
+        return Functions.validatePasswordLength.invoke(editText)
     }
 
-    override fun validateEmailAddress(textInputEditText: TextInputEditText): Boolean {
-        return Functions.validateEmailAddress.invoke(textInputEditText)
+    override fun validateEmailAddress(editText: EditText): Boolean {
+        return Functions.validateEmailAddress.invoke(editText)
     }
 
-    override fun validatePhoneNumber(textInputEditText: TextInputEditText): Boolean {
-        return Functions.validatePhoneNumber.invoke(textInputEditText)
+    override fun validatePhoneNumber(editText: EditText): Boolean {
+        return Functions.validatePhoneNumber.invoke(editText)
     }
 
-    override fun resetErrors(vararg textInputEditText: TextInputEditText) {
-        textInputEditText.forEach {
+    override fun resetErrors(vararg editText: EditText) {
+        editText.forEach {
             Functions.removeError.invoke(it)
         }
     }

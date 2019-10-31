@@ -1,9 +1,9 @@
 package com.andalus.lifeachievements.behaviors
 
-import com.google.android.material.textfield.TextInputEditText
+import android.widget.EditText
 
 interface CanValidateEmailAddress {
 
-    fun validateEmailAddress(textInputEditText: TextInputEditText): Boolean
+    fun validateEmailAddress(editText: EditText): Boolean
 
 }

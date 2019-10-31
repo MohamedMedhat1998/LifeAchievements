@@ -8,6 +8,7 @@ class Constants {
 
         const val ERROR_MESSAGE_KEY = "msg"
         const val ERROR_FIELD_KEY = "field"
+        const val EMAIL_KEY = "email-key"
 
         const val ERROR_FAILURE = "failure"
 

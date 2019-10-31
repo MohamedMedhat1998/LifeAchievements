@@ -1,9 +1,9 @@
 package com.andalus.lifeachievements.behaviors
 
-import com.google.android.material.textfield.TextInputEditText
+import android.widget.EditText
 
 interface CanValidatePhoneNumber {
 
-    fun validatePhoneNumber(textInputEditText: TextInputEditText): Boolean
+    fun validatePhoneNumber(editText: EditText): Boolean
 
 }

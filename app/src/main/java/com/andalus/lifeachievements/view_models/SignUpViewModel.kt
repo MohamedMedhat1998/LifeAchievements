@@ -9,9 +9,9 @@ import com.andalus.lifeachievements.networking.MutationRequest
 
 class SignUpViewModel : ViewModel() {
 
-    private val mutation = MutableLiveData<CreateUserMutation>()
+    private val createUserMutation = MutableLiveData<CreateUserMutation>()
     val response: LiveData<Response<CreateUserMutation.Data>> =
-        Transformations.switchMap(mutation) {
+        Transformations.switchMap(createUserMutation) {
             MutationRequest<CreateUserMutation.Data, CreateUserMutation.Variables, CreateUserMutation>().sendRequest(
                 it
             )
@@ -35,7 +35,7 @@ class SignUpViewModel : ViewModel() {
 
     fun signUp(user: User) {
         state.value = State.LoadingState
-        mutation.value = CreateUserMutation.builder()
+        createUserMutation.value = CreateUserMutation.builder()
             .firstName(user.firstName)
             .lastName(user.lastName)
             .email(user.email)

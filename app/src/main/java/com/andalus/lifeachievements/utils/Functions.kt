@@ -1,13 +1,12 @@
 package com.andalus.lifeachievements.utils
 
 import android.util.Patterns
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import android.widget.EditText
 
 class Functions {
 
     companion object {
-        val validatePhoneNumber: (TextInputEditText) -> Boolean = {
+        val validatePhoneNumber: (EditText) -> Boolean = {
             if (Patterns.PHONE.matcher(it.text.toString().trim()).matches()) {
                 true
             } else {
@@ -17,7 +16,7 @@ class Functions {
             }
         }
 
-        val validateEmailAddress: (TextInputEditText) -> Boolean = {
+        val validateEmailAddress: (EditText) -> Boolean = {
             if (Patterns.EMAIL_ADDRESS.matcher(it.text.toString().trim()).matches()) {
                 true
             } else {
@@ -27,7 +26,7 @@ class Functions {
             }
         }
 
-        val validatePasswordLength: (TextInputEditText) -> Boolean = {
+        val validatePasswordLength: (EditText) -> Boolean = {
             if (it.text.toString().length < 6) {
                 it.error = Constants.PASSWORD_LENGTH_MESSAGE
                 it.requestFocus()
@@ -37,19 +36,19 @@ class Functions {
             }
         }
 
-        val validateSimilarity: (TextInputEditText, TextInputEditText) -> Boolean =
-            { firstTextInputEditText, secondTextInputEditText ->
-                if (firstTextInputEditText.text.toString() != secondTextInputEditText.text.toString()) {
-                    firstTextInputEditText.error = Constants.PASSWORD_NO_MATCH_MESSAGE
-                    secondTextInputEditText.error = Constants.PASSWORD_NO_MATCH_MESSAGE
-                    firstTextInputEditText.requestFocus()
+        val validateSimilarity: (EditText, EditText) -> Boolean =
+            { firstEditText, secondEditText ->
+                if (firstEditText.text.toString() != secondEditText.text.toString()) {
+                    firstEditText.error = Constants.PASSWORD_NO_MATCH_MESSAGE
+                    secondEditText.error = Constants.PASSWORD_NO_MATCH_MESSAGE
+                    firstEditText.requestFocus()
                     false
                 } else {
                     true
                 }
             }
 
-        val validateNonEmpty: (TextInputEditText) -> Boolean = {
+        val validateNonEmpty: (EditText) -> Boolean = {
             if (it.text.toString().trim().isEmpty()) {
                 it.error = Constants.REQUIRED_MESSAGE
                 it.requestFocus()
@@ -59,7 +58,7 @@ class Functions {
             }
         }
 
-        val removeError: (TextInputEditText) -> Unit = {
+        val removeError: (EditText) -> Unit = {
             it.error = null
         }
     }

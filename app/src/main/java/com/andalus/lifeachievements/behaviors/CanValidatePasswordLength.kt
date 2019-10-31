@@ -1,7 +1,7 @@
 package com.andalus.lifeachievements.behaviors
 
-import com.google.android.material.textfield.TextInputEditText
+import android.widget.EditText
 
 interface CanValidatePasswordLength {
-    fun validatePasswordLength(textInputEditText: TextInputEditText): Boolean
+    fun validatePasswordLength(editText: EditText): Boolean
 }

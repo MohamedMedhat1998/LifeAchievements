@@ -1,10 +1,10 @@
 package com.andalus.lifeachievements.behaviors
 
-import com.google.android.material.textfield.TextInputEditText
+import android.widget.EditText
 
 interface CanValidateSimilarity {
     fun validateSimilarity(
-        firstTextInputEditText: TextInputEditText,
-        secondTextInputEditText: TextInputEditText
+        firstEditText: EditText,
+        secondEditText: EditText
     ): Boolean
 }

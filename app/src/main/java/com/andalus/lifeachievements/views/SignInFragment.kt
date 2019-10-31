@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,7 +19,6 @@ import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.utils.Functions
 import com.andalus.lifeachievements.view_models.SignActivityViewModel
 import com.andalus.lifeachievements.view_models.SignInViewModel
-import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 
@@ -58,7 +58,7 @@ class SignInFragment : Fragment(), CanValidateNonEmpty, CanResetErrors {
         view.btnLogin.setOnClickListener {
             if (validateNonEmpty(etUserEmailPhone) && validateNonEmpty(etPassword)) {
                 signInViewModel.signIn(etUserEmailPhone.text.toString(), etPassword.text.toString())
-                resetErrors(etUserEmailPhone,etPassword)
+                resetErrors(etUserEmailPhone, etPassword)
             }
         }
 
@@ -72,7 +72,12 @@ class SignInFragment : Fragment(), CanValidateNonEmpty, CanResetErrors {
                     }
                     Constants.ERROR_UNVERIFIED -> {
                         currentError = ""
-                        startActivity(Intent(activity, VerificationActivity::class.java))
+                        startActivity(Intent(activity, VerificationActivity::class.java).apply {
+                            putExtra(
+                                Constants.EMAIL_KEY,
+                                etUserEmailPhone.text.toString()
+                            )
+                        })
                     }
                     Constants.ERROR_USERNAME -> {
                         currentError = ""
@@ -121,12 +126,12 @@ class SignInFragment : Fragment(), CanValidateNonEmpty, CanResetErrors {
         return view
     }
 
-    override fun validateNonEmpty(textInputEditText: TextInputEditText): Boolean {
-        return Functions.validateNonEmpty.invoke(textInputEditText)
+    override fun validateNonEmpty(editText: EditText): Boolean {
+        return Functions.validateNonEmpty.invoke(editText)
     }
 
-    override fun resetErrors(vararg textInputEditText: TextInputEditText) {
-        textInputEditText.forEach {
+    override fun resetErrors(vararg editText: EditText) {
+        editText.forEach {
             Functions.removeError.invoke(it)
         }
     }
