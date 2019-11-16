@@ -11,12 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.VerificationActivity"></activity>
+        <activity android:name=".views.activities.CreateChallengeActivity"></activity>
+        <activity android:name=".views.activities.VerificationActivity" />
         <activity
-            android:name=".views.HomeActivity"
+            android:name=".views.activities.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".views.SignActivity">
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".views.activities.SignActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

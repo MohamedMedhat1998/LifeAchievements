@@ -1,4 +1,4 @@
-package com.andalus.lifeachievements.views
+package com.andalus.lifeachievements.views.activities
 
 import android.os.Bundle
 import android.view.Window
@@ -32,12 +32,14 @@ class SignActivity : AppCompatActivity() {
 
         signActivityViewModel.completeSignedUp.observe(this, Observer {
             if (it)
-                vpSignActivity.currentItem = SIGN_IN_FRAGMENT
+                vpSignActivity.currentItem =
+                    SIGN_IN_FRAGMENT
         })
 
         signActivityViewModel.newSignUp.observe(this, Observer {
             if (it)
-                vpSignActivity.currentItem = SIGN_UP_FRAGMENT
+                vpSignActivity.currentItem =
+                    SIGN_UP_FRAGMENT
         })
     }
 }

@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".views.SignActivity">
+        tools:context=".views.activities.SignActivity">
 
         <ImageView
             android:id="@+id/imageView"

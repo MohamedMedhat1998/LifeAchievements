@@ -1,4 +1,4 @@
-package com.andalus.lifeachievements.views
+package com.andalus.lifeachievements.views.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

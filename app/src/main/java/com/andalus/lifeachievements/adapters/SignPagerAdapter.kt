@@ -3,8 +3,8 @@ package com.andalus.lifeachievements.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.andalus.lifeachievements.views.SignInFragment
-import com.andalus.lifeachievements.views.SignUpFragment
+import com.andalus.lifeachievements.views.fragments.SignInFragment
+import com.andalus.lifeachievements.views.fragments.SignUpFragment
 
 class SignPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(
     fm,

@@ -1,4 +1,4 @@
-package com.andalus.lifeachievements.fragments
+package com.andalus.lifeachievements.views.fragments
 
 
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.andalus.lifeachievements.R
+import kotlinx.android.synthetic.main.fragment_feed.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,8 +37,9 @@ class Feed : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_feed, container, false)
+        val view = inflater.inflate(R.layout.fragment_feed, container, false)
+        view.rvFeed
+        return view
     }
 
 

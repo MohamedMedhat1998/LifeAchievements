@@ -1,4 +1,4 @@
-package com.andalus.lifeachievements.views
+package com.andalus.lifeachievements.views.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -19,6 +19,8 @@ import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.utils.Functions
 import com.andalus.lifeachievements.view_models.SignActivityViewModel
 import com.andalus.lifeachievements.view_models.SignInViewModel
+import com.andalus.lifeachievements.views.activities.HomeActivity
+import com.andalus.lifeachievements.views.activities.VerificationActivity
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 
