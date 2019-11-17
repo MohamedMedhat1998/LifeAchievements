@@ -14,11 +14,14 @@ import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
 import com.andalus.lifeachievements.behaviors.CanResetErrors
 import com.andalus.lifeachievements.behaviors.CanValidateNonEmpty
+import com.andalus.lifeachievements.data.TokenRepository
 import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.utils.Functions
 import com.andalus.lifeachievements.view_models.SignActivityViewModel
 import com.andalus.lifeachievements.view_models.SignInViewModel
+import com.andalus.lifeachievements.view_models_factories.SignActivityViewModelFactory
+import com.andalus.lifeachievements.view_models_factories.SignInViewModelFactory
 import com.andalus.lifeachievements.views.activities.HomeActivity
 import com.andalus.lifeachievements.views.activities.VerificationActivity
 import kotlinx.android.synthetic.main.fragment_sign_in.*
@@ -41,9 +44,20 @@ class SignInFragment : Fragment(), CanValidateNonEmpty, CanResetErrors {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_sign_in, container, false)
 
-        signInViewModel = ViewModelProviders.of(this).get(SignInViewModel::class.java)
+        val tokenRepository = TokenRepository(context!!)
+
+        val signInViewModelFactory = SignInViewModelFactory(tokenRepository)
+
+        signInViewModel =
+            ViewModelProviders.of(this, signInViewModelFactory).get(SignInViewModel::class.java)
+
+        val signActivityViewModelFactory = SignActivityViewModelFactory(tokenRepository)
+
         signActivityViewModel =
-            activity?.run { ViewModelProviders.of(this).get(SignActivityViewModel::class.java) }
+            activity?.run {
+                ViewModelProviders.of(this, signActivityViewModelFactory)
+                    .get(SignActivityViewModel::class.java)
+            }
                 ?: throw Exception(Constants.ERROR_INVALID_ACTIVITY)
 
         signActivityViewModel.emailAddress.observe(this, Observer {

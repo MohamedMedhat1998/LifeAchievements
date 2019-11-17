@@ -1,0 +1,25 @@
+mutation CreateChallengeMutation(
+    $title : String!,
+    $description : String!,
+    $days : Int!,
+    $type : Type!,
+    $published : Boolean!
+){
+    createAchievement(data: {
+        title: $title,
+        description: $description,
+        days: $days,
+        type: $type,
+        published: $published
+    }){
+        id,
+        completed,
+        created_at,
+        days,
+        description,
+        picture,
+        published,
+        title,
+        type
+    }
+}

@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
 import com.andalus.lifeachievements.behaviors.*
+import com.andalus.lifeachievements.data.TokenRepository
 import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.models.User
 import com.andalus.lifeachievements.type.Gender
@@ -18,6 +19,7 @@ import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.utils.Functions
 import com.andalus.lifeachievements.view_models.SignActivityViewModel
 import com.andalus.lifeachievements.view_models.SignUpViewModel
+import com.andalus.lifeachievements.view_models_factories.SignActivityViewModelFactory
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up.view.*
 
@@ -41,8 +43,13 @@ class SignUpFragment : Fragment(), CanValidatePhoneNumber, CanValidateEmailAddre
         val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
 
         signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
+
+        val viewModelFactory = SignActivityViewModelFactory(TokenRepository(context!!))
+
         signActivityViewModel =
-            activity?.run { ViewModelProviders.of(this).get(SignActivityViewModel::class.java) }
+            activity?.run {
+                ViewModelProviders.of(this, viewModelFactory).get(SignActivityViewModel::class.java)
+            }
                 ?: throw Exception(Constants.ERROR_INVALID_ACTIVITY)
 
         view.btnSignUp.setOnClickListener {

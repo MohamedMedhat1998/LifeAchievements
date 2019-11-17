@@ -63,7 +63,7 @@
     <string name="account_verification_complete">Account verified successfully!</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
-    <string name="notifications_and_privacy">Notifications and privacy</string>
+    <string name="privacy">Privacy</string>
     <string name="public_challenge">Public Challenge</string>
     <string name="private_challenge">Private Challenge</string>
     <string name="notify_people_on_creation">Notify people on creation</string>
@@ -73,4 +73,7 @@
     <string name="duration">Duration</string>
     <string name="days_count">Days count</string>
     <string name="available_mistakes">Available mistakes</string>
+    <string name="get_rid_of_something">Get rid of something</string>
+    <string name="do_something">Do something</string>
+    <string name="type">Type</string>
 </resources>

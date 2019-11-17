@@ -3,30 +3,33 @@ package com.andalus.lifeachievements.utils
 class Constants {
 
     companion object {
-
+        //Networking
         const val SERVER_URL = "https://protected-basin-72892.herokuapp.com/"
-
+        //Keys
         const val ERROR_MESSAGE_KEY = "msg"
         const val ERROR_FIELD_KEY = "field"
         const val EMAIL_KEY = "email-key"
-
+        //Error-Types
         const val ERROR_FAILURE = "failure"
-
+        //Response-values
         const val ERROR_USERNAME = "username"
         const val ERROR_PASSWORD = "password"
         const val ERROR_PHONE = "phone"
         const val ERROR_EMAIL = "email"
         const val ERROR_UNVERIFIED = "message"
         const val ERROR_REGISTRATION_CODE = "register_code"
-
+        //Internal-errors
         const val ERROR_INVALID_ACTIVITY = "Invalid Activity"
-
+        //Login
         const val INVALID_PHONE_NUMBER = "Invalid phone number"
         const val INVALID_EMAIL_ADDRESS = "Invalid email address"
-
+        //Messages
         const val PASSWORD_LENGTH_MESSAGE = "Password length cannot be less than 6 characters"
         const val PASSWORD_NO_MATCH_MESSAGE = "Password didn't match"
         const val REQUIRED_MESSAGE = "This field is required"
+        //Preferences
+        const val PREFERENCES_FILE_NAME = "token-cache"
+        const val TOKEN_KEY = "token"
 
     }
 

@@ -2,11 +2,12 @@ package com.andalus.lifeachievements.view_models
 
 import androidx.lifecycle.*
 import com.andalus.lifeachievements.LoginMutation
+import com.andalus.lifeachievements.data.TokenRepository
 import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.models.Response
 import com.andalus.lifeachievements.networking.MutationRequest
 
-class SignInViewModel : ViewModel() {
+class SignInViewModel(private val tokenRepository: TokenRepository) : ViewModel() {
 
     private val loginMutation = MutableLiveData<LoginMutation>()
     val response: LiveData<Response<LoginMutation.Data>> =
@@ -26,6 +27,9 @@ class SignInViewModel : ViewModel() {
                     state.value = State.ErrorState
                 } else {
                     state.value = State.SuccessState
+                    if (it.data != null) {
+                        tokenRepository.setToken(it.data.loginUser().token()!!)
+                    }
                 }
             }
         }

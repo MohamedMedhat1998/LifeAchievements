@@ -27,45 +27,4 @@ class ApolloNetworkingClient {
         }
     }
 
-
-    /*fun test() {
-
-
-        val request = apolloClient.mutate(
-            CreateUserMutation.builder()
-                .firstName("Mohamed")
-                .lastName("Salah")
-                .email("abosalah@gmail.com")
-                .phone("01063863299")
-                .username("salah95")
-                .gender(Gender.MALE)
-                .password("123456789")
-                .build()
-        )
-
-        request.enqueue(object : ApolloCall.Callback<CreateUserMutation.Data>() {
-            override fun onFailure(e: ApolloException) {
-                e.printStackTrace()
-                Log.wtf("onFailure", e.message)
-            }
-
-            override fun onResponse(response: Response<CreateUserMutation.Data>) {
-                Log.d("RESPONSE", response.toString())
-                Log.d("HAS ERRORS", response.hasErrors().toString())
-
-                if (response.hasErrors()) {
-                    response.response().forEach {
-                        Log.wtf("ERROR", it.customAttributes()["msg"].toString())
-
-                    }
-                }
-                Log.wtf("DATA", response.data().toString())
-                Log.d("ID", "${response.data()?.createUser()?.response()}")
-            }
-
-        })
-
-    }*/
-
-
 }

@@ -35,7 +35,7 @@ class VerificationActivity : AppCompatActivity(), CanValidateNonEmpty {
 
         btnVerify.setOnClickListener {
             if (validateNonEmpty(etVerification)) {
-                verificationActivityViewModel.verify(email, etVerification.text.toString())
+                verificationActivityViewModel.verify(email, etVerification.text.toString().trim())
             }
         }
 
