@@ -43,7 +43,7 @@ class FeedAdapter(private val posts: MutableList<Post>) :
         }else{
 
         }*/
-        Glide.with(context).load(posts[position].achievement.badge).into(holder.ivAchievementBadge)
+        //Glide.with(context).load(posts[position].achievement.badge).into(holder.ivAchievementBadge)
         holder.tvAchievementDescription.text = posts[position].achievement.description
         holder.tvAchievementTitle.text = posts[position].achievement.title
 

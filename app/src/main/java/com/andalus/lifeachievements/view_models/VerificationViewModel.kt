@@ -6,7 +6,7 @@ import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.models.Response
 import com.andalus.lifeachievements.networking.MutationRequest
 
-class VerificationActivityViewModel : ViewModel() {
+class VerificationViewModel : ViewModel() {
 
     private val verificationMutation = MutableLiveData<VerifyMutation>()
     val response: LiveData<Response<VerifyMutation.Data>> =

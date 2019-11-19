@@ -5,6 +5,7 @@ class Constants {
     companion object {
         //Networking
         const val SERVER_URL = "https://protected-basin-72892.herokuapp.com/"
+        const val TOKEN_HEADER = "Bearer"
         //Keys
         const val ERROR_MESSAGE_KEY = "msg"
         const val ERROR_FIELD_KEY = "field"

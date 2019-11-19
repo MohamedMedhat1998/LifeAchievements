@@ -13,12 +13,12 @@ import com.andalus.lifeachievements.behaviors.CanValidateNonEmpty
 import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.utils.Functions
-import com.andalus.lifeachievements.view_models.VerificationActivityViewModel
+import com.andalus.lifeachievements.view_models.VerificationViewModel
 import kotlinx.android.synthetic.main.activity_verification.*
 
 class VerificationActivity : AppCompatActivity(), CanValidateNonEmpty {
 
-    private lateinit var verificationActivityViewModel: VerificationActivityViewModel
+    private lateinit var verificationViewModel: VerificationViewModel
 
     private var currentError = ""
 
@@ -26,8 +26,8 @@ class VerificationActivity : AppCompatActivity(), CanValidateNonEmpty {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verification)
 
-        verificationActivityViewModel =
-            ViewModelProviders.of(this).get(VerificationActivityViewModel::class.java)
+        verificationViewModel =
+            ViewModelProviders.of(this).get(VerificationViewModel::class.java)
 
         val email = intent.extras!!.getString(Constants.EMAIL_KEY)!!
 
@@ -35,11 +35,11 @@ class VerificationActivity : AppCompatActivity(), CanValidateNonEmpty {
 
         btnVerify.setOnClickListener {
             if (validateNonEmpty(etVerification)) {
-                verificationActivityViewModel.verify(email, etVerification.text.toString().trim())
+                verificationViewModel.verify(email, etVerification.text.toString().trim())
             }
         }
 
-        verificationActivityViewModel.response.observe(this, Observer {
+        verificationViewModel.response.observe(this, Observer {
             it.errors.forEach { error ->
                 when (error.field) {
                     Constants.ERROR_REGISTRATION_CODE -> {
@@ -54,7 +54,7 @@ class VerificationActivity : AppCompatActivity(), CanValidateNonEmpty {
             }
         })
 
-        verificationActivityViewModel.state.observe(this, Observer {
+        verificationViewModel.state.observe(this, Observer {
             when (it) {
                 State.NormalState -> {
                     pbLoading.visibility = View.INVISIBLE
