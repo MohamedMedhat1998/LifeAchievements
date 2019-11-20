@@ -1,8 +1,10 @@
 package com.andalus.lifeachievements.views.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
 import com.andalus.lifeachievements.behaviors.CanValidateNonEmpty
@@ -40,7 +42,9 @@ class CreateChallengeActivity : AppCompatActivity(), CanValidateNonEmpty {
 
         }
 
-
+        viewModel.response.observe(this, Observer {
+            Log.d("response", it.toString())
+        })
     }
 
     override fun validateNonEmpty(editText: EditText): Boolean {
