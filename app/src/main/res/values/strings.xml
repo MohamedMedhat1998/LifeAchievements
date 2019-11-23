@@ -76,4 +76,6 @@
     <string name="get_rid_of_something">Get rid of something</string>
     <string name="do_something">Do something</string>
     <string name="type">Type</string>
+    <string name="challenge_created_successfully">Challenge created successfully</string>
+    <string name="session_expired">Session expired, please re-login</string>
 </resources>

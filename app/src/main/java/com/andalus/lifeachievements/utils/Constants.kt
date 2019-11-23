@@ -20,6 +20,10 @@ class Constants {
         const val ERROR_EMAIL = "email"
         const val ERROR_UNVERIFIED = "message"
         const val ERROR_REGISTRATION_CODE = "register_code"
+        const val ERROR_INVALID_TOKEN = "NEW_TOKEN"
+        const val ERROR_INVALID_USER = "MESSAGE"
+        const val ERROR_TITLE = "title"
+        const val ERROR_DESCRIPTION = "description"
         //Internal-errors
         const val ERROR_INVALID_ACTIVITY = "Invalid Activity"
         //Login

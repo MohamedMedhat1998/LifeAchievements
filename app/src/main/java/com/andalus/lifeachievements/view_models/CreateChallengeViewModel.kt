@@ -1,16 +1,16 @@
 package com.andalus.lifeachievements.view_models
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.andalus.lifeachievements.CreateChallengeMutation
 import com.andalus.lifeachievements.data.TokenRepository
+import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.models.Achievement
 import com.andalus.lifeachievements.models.Response
 import com.andalus.lifeachievements.networking.MutationRequest
 
 class CreateChallengeViewModel(private val tokenRepository: TokenRepository) : ViewModel() {
+
+    private lateinit var achievement: Achievement
 
     private val createAchievementMutation = MutableLiveData<CreateChallengeMutation>()
     val response: LiveData<Response<CreateChallengeMutation.Data>> =
@@ -20,11 +20,38 @@ class CreateChallengeViewModel(private val tokenRepository: TokenRepository) : V
             ).sendRequest(it)
         }
 
+    val state = MediatorLiveData<State>()
+
+    init {
+        state.value = State.NormalState
+        state.addSource(response) {
+            if (it != null) {
+                if (it.errors.isNotEmpty()) {
+                    state.value = State.ErrorState
+                } else {
+                    state.value = State.SuccessState
+                }
+            }
+        }
+    }
+
     fun createAchievement(achievement: Achievement) {
+        this.achievement = achievement
+        state.value = State.LoadingState
         createAchievementMutation.value =
             CreateChallengeMutation.builder().title(achievement.title)
                 .description(achievement.description).days(achievement.days)
                 .published(achievement.published).type(achievement.type)
                 .build()
+    }
+
+    fun refreshWithNewToken(token: String) {
+        state.value = State.LoadingState
+        tokenRepository.setToken(token)
+        createAchievement(achievement)
+    }
+
+    fun resetToken() {
+        tokenRepository.setToken("")
     }
 }
