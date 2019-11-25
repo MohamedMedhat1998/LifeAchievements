@@ -3,7 +3,7 @@ package com.andalus.lifeachievements.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.andalus.lifeachievements.views.fragments.Feed
+import com.andalus.lifeachievements.views.fragments.FeedFragment
 import com.andalus.lifeachievements.fragments.FriendSuggestions
 import com.andalus.lifeachievements.fragments.Notifications
 
@@ -12,10 +12,10 @@ class HomePagerAdapter(fm:FragmentManager) : FragmentStatePagerAdapter(fm,
 
     override fun getItem(position: Int): Fragment {
         return when(position){
-            0 -> Feed.newInstance("","")
+            0 -> FeedFragment.newInstance()
             1 -> FriendSuggestions.newInstance("","")
             2 -> Notifications.newInstance("","")
-            else -> Feed.newInstance("","")
+            else -> FeedFragment.newInstance()
         }
     }
 

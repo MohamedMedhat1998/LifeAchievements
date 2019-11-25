@@ -2,11 +2,12 @@ package com.andalus.lifeachievements.view_models
 
 import androidx.lifecycle.*
 import com.andalus.lifeachievements.CreateChallengeMutation
-import com.andalus.lifeachievements.data.TokenRepository
 import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.models.Achievement
 import com.andalus.lifeachievements.models.Response
 import com.andalus.lifeachievements.networking.MutationRequest
+import com.andalus.lifeachievements.repositories.TokenRepository
+import com.andalus.lifeachievements.utils.TypeConverter
 
 class CreateChallengeViewModel(private val tokenRepository: TokenRepository) : ViewModel() {
 
@@ -41,7 +42,7 @@ class CreateChallengeViewModel(private val tokenRepository: TokenRepository) : V
         createAchievementMutation.value =
             CreateChallengeMutation.builder().title(achievement.title)
                 .description(achievement.description).days(achievement.days)
-                .published(achievement.published).type(achievement.type)
+                .published(achievement.published).type(TypeConverter.getType(achievement.type))
                 .build()
     }
 

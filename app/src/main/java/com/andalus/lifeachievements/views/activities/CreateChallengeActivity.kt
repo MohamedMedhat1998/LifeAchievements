@@ -12,9 +12,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
 import com.andalus.lifeachievements.behaviors.CanResetErrors
 import com.andalus.lifeachievements.behaviors.CanValidateNonEmpty
-import com.andalus.lifeachievements.data.TokenRepository
 import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.models.Achievement
+import com.andalus.lifeachievements.repositories.TokenRepository
 import com.andalus.lifeachievements.type.Type
 import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.utils.Functions
@@ -32,7 +32,11 @@ class CreateChallengeActivity : AppCompatActivity(), CanValidateNonEmpty, CanRes
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_challenge)
 
-        val viewModelFactory = CreateChallengeViewModelFactory(TokenRepository(this))
+        val viewModelFactory = CreateChallengeViewModelFactory(
+            TokenRepository(
+                this
+            )
+        )
         viewModel =
             ViewModelProviders.of(this, viewModelFactory).get(CreateChallengeViewModel::class.java)
 
@@ -40,13 +44,13 @@ class CreateChallengeActivity : AppCompatActivity(), CanValidateNonEmpty, CanRes
 
             if (validateNonEmpty(etTitle) && validateNonEmpty(etDescription)) {
                 resetErrors(etTitle, etDescription)
-                btnCreate.requestFocus()
                 val title = etTitle.text.toString()
                 val description = etDescription.text.toString()
                 val days = spDaysCount.selectedItem.toString().toInt()
                 val type = if (rbDoSomething.isChecked) Type.DO_IT else Type.GET_RID_OF
                 val published = rbPublicChallenge.isChecked
-                val achievement = Achievement(title, description, days, type, published)
+                val achievement =
+                    Achievement("", title, description, days, type.toString(), published)
                 viewModel.createAchievement(achievement)
             }
 

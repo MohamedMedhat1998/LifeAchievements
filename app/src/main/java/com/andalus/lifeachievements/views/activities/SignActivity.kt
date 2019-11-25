@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
 import com.andalus.lifeachievements.adapters.SignPagerAdapter
-import com.andalus.lifeachievements.data.TokenRepository
+import com.andalus.lifeachievements.repositories.TokenRepository
 import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.view_models.SignActivityViewModel
 import com.andalus.lifeachievements.view_models_factories.SignActivityViewModelFactory
@@ -26,7 +26,11 @@ class SignActivity : AppCompatActivity() {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_sign)
 
-        val viewModelFactory = SignActivityViewModelFactory(TokenRepository(this))
+        val viewModelFactory = SignActivityViewModelFactory(
+            TokenRepository(
+                this
+            )
+        )
 
         signActivityViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(SignActivityViewModel::class.java)

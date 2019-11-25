@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
 import com.andalus.lifeachievements.behaviors.CanResetErrors
 import com.andalus.lifeachievements.behaviors.CanValidateNonEmpty
-import com.andalus.lifeachievements.data.TokenRepository
+import com.andalus.lifeachievements.repositories.TokenRepository
 import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.utils.Functions
@@ -44,7 +44,8 @@ class SignInFragment : Fragment(), CanValidateNonEmpty, CanResetErrors {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_sign_in, container, false)
 
-        val tokenRepository = TokenRepository(context!!)
+        val tokenRepository =
+            TokenRepository(context!!)
 
         val signInViewModelFactory = SignInViewModelFactory(tokenRepository)
 

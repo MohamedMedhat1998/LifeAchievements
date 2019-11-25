@@ -1,4 +1,4 @@
-package com.andalus.lifeachievements.data
+package com.andalus.lifeachievements.repositories
 
 import android.content.Context
 import com.andalus.lifeachievements.utils.Constants

@@ -28,7 +28,7 @@ class FeedAdapter(private val posts: MutableList<Post>) :
     }
 
     override fun onBindViewHolder(holder: PostHolder, position: Int) {
-        Glide.with(context).load(posts[position].owner.picture).placeholder(R.drawable.ic_man)
+        /*Glide.with(context).load(posts[position].owner.picture).placeholder(R.drawable.ic_man)
             .into(holder.ivOwnerAvatar)
         holder.tvOwnerName.text = context.getString(
             R.string.owner_name,
@@ -58,7 +58,7 @@ class FeedAdapter(private val posts: MutableList<Post>) :
         if (posts[position].shares.isNotEmpty())
             holder.tvPostShares.text =
                 context.getString(R.string.post_shares, posts[position].shares.size)
-
+    */
     }
 
     inner class PostHolder(view: View) : RecyclerView.ViewHolder(view) {

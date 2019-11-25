@@ -2,7 +2,7 @@ package com.andalus.lifeachievements.view_models
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.andalus.lifeachievements.data.TokenRepository
+import com.andalus.lifeachievements.repositories.TokenRepository
 
 class SignActivityViewModel(tokenRepository: TokenRepository) : ViewModel() {
 

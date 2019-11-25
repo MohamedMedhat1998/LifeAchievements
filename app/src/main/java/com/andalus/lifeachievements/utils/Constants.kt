@@ -1,5 +1,7 @@
 package com.andalus.lifeachievements.utils
 
+import okio.JvmField
+
 class Constants {
 
     companion object {
@@ -36,7 +38,6 @@ class Constants {
         //Preferences
         const val PREFERENCES_FILE_NAME = "token-cache"
         const val TOKEN_KEY = "token"
-
     }
 
 }
