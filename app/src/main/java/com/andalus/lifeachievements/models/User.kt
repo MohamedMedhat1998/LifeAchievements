@@ -1,18 +1,22 @@
 package com.andalus.lifeachievements.models
 
-import com.andalus.lifeachievements.type.Gender
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.andalus.lifeachievements.utils.DatabaseConstants.UserTable.*
 
+@Entity
 data class User(
-    val id: String,
-    val firstName: String,
-    val lastName: String,
-    val email: String,
-    val phone: String,
-    val username: String,
-    val gender: Gender,
-    val picture: String,
-    val country: String,
-    val password: String
+    @PrimaryKey @ColumnInfo(name = COLUMN_ID) val id: String,
+    @ColumnInfo(name = COLUMN_FIRST_NAME) val firstName: String,
+    @ColumnInfo(name = COLUMN_LAST_NAME) val lastName: String,
+    @ColumnInfo(name = COLUMN_EMAIL) val email: String,
+    @ColumnInfo(name = COLUMN_PHONE) val phone: String,
+    @ColumnInfo(name = COLUMN_USERNAME) val username: String,
+    @ColumnInfo(name = COLUMN_GENDER) val gender: String,
+    @ColumnInfo(name = COLUMN_PICTURE) val picture: String,
+    @ColumnInfo(name = COLUMN_COUNTRY) val country: String,
+    @ColumnInfo(name = COLUMN_PASSWORD) val password: String
 )
 
 /*

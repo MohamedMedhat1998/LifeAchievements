@@ -5,12 +5,12 @@ import com.andalus.lifeachievements.repositories.TokenRepository
 import com.andalus.lifeachievements.models.Error
 import com.andalus.lifeachievements.utils.Constants
 import com.apollographql.apollo.ApolloCall
-import com.apollographql.apollo.api.Mutation
 import com.apollographql.apollo.api.Operation
+import com.apollographql.apollo.api.Query
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
 
-class MutationRequest<A : Operation.Data, B : Operation.Variables, T : Mutation<A, A, B>>(private val tokenRepository: TokenRepository? = null) {
+class QueryRequest<A : Operation.Data, B : Operation.Variables, T : Query<A, A, B>>(private val tokenRepository: TokenRepository? = null) {
 
     fun sendRequest(t: T): MutableLiveData<com.andalus.lifeachievements.models.Response<A>> {
 
@@ -22,7 +22,7 @@ class MutationRequest<A : Operation.Data, B : Operation.Variables, T : Mutation<
             else
                 ApolloNetworkingClient.getInstance(tokenRepository)
 
-        client.mutate(t)
+        client.query(t)
             .enqueue(object : ApolloCall.Callback<A>() {
 
                 override fun onFailure(e: ApolloException) {

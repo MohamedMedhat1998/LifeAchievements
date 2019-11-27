@@ -2,7 +2,7 @@ package com.andalus.lifeachievements.view_models
 
 import androidx.lifecycle.*
 import com.andalus.lifeachievements.LoginMutation
-import com.andalus.lifeachievements.data.TokenRepository
+import com.andalus.lifeachievements.repositories.TokenRepository
 import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.models.Response
 import com.andalus.lifeachievements.networking.MutationRequest

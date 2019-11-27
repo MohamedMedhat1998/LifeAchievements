@@ -6,6 +6,7 @@ import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.models.Response
 import com.andalus.lifeachievements.models.User
 import com.andalus.lifeachievements.networking.MutationRequest
+import com.andalus.lifeachievements.utils.GenderConverter
 
 class SignUpViewModel : ViewModel() {
 
@@ -42,7 +43,7 @@ class SignUpViewModel : ViewModel() {
             .phone(user.phone)
             .username(user.username)
             .password(user.password)
-            .gender(user.gender)
+            .gender(GenderConverter.getGender(user.gender))
             .build()
 
     }

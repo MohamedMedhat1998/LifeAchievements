@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
 import com.andalus.lifeachievements.behaviors.*
-import com.andalus.lifeachievements.data.TokenRepository
+import com.andalus.lifeachievements.repositories.TokenRepository
 import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.models.User
 import com.andalus.lifeachievements.type.Gender
@@ -44,7 +44,11 @@ class SignUpFragment : Fragment(), CanValidatePhoneNumber, CanValidateEmailAddre
 
         signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
 
-        val viewModelFactory = SignActivityViewModelFactory(TokenRepository(context!!))
+        val viewModelFactory = SignActivityViewModelFactory(
+            TokenRepository(
+                context!!
+            )
+        )
 
         signActivityViewModel =
             activity?.run {
@@ -78,7 +82,7 @@ class SignUpFragment : Fragment(), CanValidatePhoneNumber, CanValidateEmailAddre
                     etEmail.text.toString().trim(),
                     etPhone.text.toString().trim(),
                     etUsername.text.toString().trim(),
-                    gender,
+                    gender.toString(),
                     "",
                     spinnerCountries.selectedItem.toString(),
                     etPassword.text.toString()
