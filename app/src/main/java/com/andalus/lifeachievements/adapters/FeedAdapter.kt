@@ -8,11 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.andalus.lifeachievements.R
-import com.andalus.lifeachievements.models.Post
+import com.andalus.lifeachievements.models.PostObject
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_achievement_post.view.*
 
-class FeedAdapter(private val posts: MutableList<Post>) :
+class FeedAdapter(private val posts: MutableList<PostObject>) :
     RecyclerView.Adapter<FeedAdapter.PostHolder>() {
     private lateinit var context: Context
 
@@ -28,7 +28,7 @@ class FeedAdapter(private val posts: MutableList<Post>) :
     }
 
     override fun onBindViewHolder(holder: PostHolder, position: Int) {
-        /*Glide.with(context).load(posts[position].owner.picture).placeholder(R.drawable.ic_man)
+        Glide.with(context).load(posts[position].owner.picture).placeholder(R.drawable.ic_man)
             .into(holder.ivOwnerAvatar)
         holder.tvOwnerName.text = context.getString(
             R.string.owner_name,
@@ -46,7 +46,7 @@ class FeedAdapter(private val posts: MutableList<Post>) :
         //Glide.with(context).load(posts[position].achievement.badge).into(holder.ivAchievementBadge)
         holder.tvAchievementDescription.text = posts[position].achievement.description
         holder.tvAchievementTitle.text = posts[position].achievement.title
-
+        /*
         if (posts[position].likes.isNotEmpty())
             holder.tvPostLikes.text =
                 context.getString(R.string.post_likes, posts[position].likes.size)
@@ -58,7 +58,7 @@ class FeedAdapter(private val posts: MutableList<Post>) :
         if (posts[position].shares.isNotEmpty())
             holder.tvPostShares.text =
                 context.getString(R.string.post_shares, posts[position].shares.size)
-    */
+        */
     }
 
     inner class PostHolder(view: View) : RecyclerView.ViewHolder(view) {

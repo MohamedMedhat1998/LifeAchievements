@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.andalus.lifeachievements.data.daos.AchievementsDao
 import com.andalus.lifeachievements.data.daos.PostObjectsDao
 import com.andalus.lifeachievements.data.daos.PostsDao
+import com.andalus.lifeachievements.data.daos.UsersDao
 import com.andalus.lifeachievements.models.Achievement
 import com.andalus.lifeachievements.models.Post
 import com.andalus.lifeachievements.models.User
@@ -35,8 +37,10 @@ abstract class PostsDatabase : RoomDatabase() {
     }
 
     abstract fun postsDao(): PostsDao
+    abstract fun usersDao(): UsersDao
+    abstract fun achievementsDao(): AchievementsDao
 
-    fun getPostObjectsDao(): PostObjectsDao {
+    fun postObjectsDao(): PostObjectsDao {
         return PostObjectsDao.getInstance(this)
     }
 }

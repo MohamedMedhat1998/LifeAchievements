@@ -11,10 +11,7 @@ interface PostsDao {
     @Query("SELECT * FROM Post")
     suspend fun getAllPosts(): List<Post>
 
-    @Query("SELECT * FROM Post,User,Achievement WHERE Post.ownerId = User.id AND Post.achievementId = Achievement.id")
-    suspend fun getAllPostsWithJoin() : List<Post>
-
     @Insert
-    suspend fun saveList(vararg posts: Post)
+    suspend fun insertPosts(vararg posts: Post)
 
 }

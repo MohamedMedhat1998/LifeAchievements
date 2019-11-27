@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.andalus.lifeachievements.R
 import com.andalus.lifeachievements.adapters.FeedAdapter
 import com.andalus.lifeachievements.data.PostsDatabase
+import com.andalus.lifeachievements.data.daos.PostObjectsDao
 import com.andalus.lifeachievements.models.Post
+import com.andalus.lifeachievements.models.PostObject
 import com.andalus.lifeachievements.repositories.TokenRepository
 import com.andalus.lifeachievements.utils.NetworkStateTracer
 import com.andalus.lifeachievements.view_models.FeedViewModel
@@ -38,7 +40,7 @@ class FeedFragment : Fragment() {
         )
         val viewModel = ViewModelProviders.of(this, viewModelFactory).get(FeedViewModel::class.java)
         viewModel.posts.observe(this, Observer {
-            view.rvFeed.adapter = FeedAdapter(it as MutableList<Post>)
+            view.rvFeed.adapter = FeedAdapter(it as MutableList<PostObject>)
         })
         return view
     }
