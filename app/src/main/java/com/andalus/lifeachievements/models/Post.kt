@@ -11,17 +11,17 @@ import com.andalus.lifeachievements.utils.DatabaseConstants.PostTable.*
 @Entity(
     foreignKeys = [ForeignKey(
         entity = User::class,
-        parentColumns = [DatabaseConstants.UserTable.ID],
+        parentColumns = [DatabaseConstants.UserTable.COLUMN_ID],
         childColumns = [COLUMN_OWNER_ID]
     ),
         ForeignKey(
             entity = Achievement::class,
-            parentColumns = [DatabaseConstants.AchievementTable.ID],
+            parentColumns = [DatabaseConstants.AchievementTable.COLUMN_ID],
             childColumns = [COLUMN_ACHIEVEMENT_ID]
         )]
 )
 data class Post(
-    @PrimaryKey val id: String,
+    @PrimaryKey @ColumnInfo(name = COLUMN_ID) val id: String,
     @ColumnInfo(name = COLUMN_OWNER_ID) val ownerId: String,
     @ColumnInfo(name = COLUMN_DATE) val date: String,
     @ColumnInfo(name = COLUMN_ACHIEVEMENT_ID) val achievementId: String

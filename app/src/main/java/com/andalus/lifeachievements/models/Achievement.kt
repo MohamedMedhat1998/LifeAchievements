@@ -13,10 +13,10 @@ data class Achievement(
     val description: String,
     val badge: String,
     val state: String*/
-    @PrimaryKey @ColumnInfo(name = ID) val id: String,
-    @ColumnInfo(name = TITLE) val title: String,
-    @ColumnInfo(name = DESCRIPTION) val description: String,
-    @ColumnInfo(name = DAYS) val days: Int,
-    @ColumnInfo(name = TYPE) val type: String,
-    @ColumnInfo(name = PUBLISHED) val published: Boolean
+    @PrimaryKey @ColumnInfo(name = COLUMN_ID) val id: String,
+    @ColumnInfo(name = COLUMN_TITLE) val title: String,
+    @ColumnInfo(name = COLUMN_DESCRIPTION) val description: String,
+    @ColumnInfo(name = COLUMN_DAYS) val days: Int,
+    @ColumnInfo(name = COLUMN_TYPE) val type: String,
+    @ColumnInfo(name = COLUMN_PUBLISHED) val published: Boolean
 )

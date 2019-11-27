@@ -5,6 +5,7 @@ public class DatabaseConstants {
     public static final String DATABASE_NAME = "app-database";
 
     public static class PostTable {
+        public static final String COLUMN_ID = "id";
         public static final String COLUMN_OWNER_ID = "ownerId";
         public static final String COLUMN_DATE = "date";
         public static final String COLUMN_ACHIEVEMENT_ID = "achievementId";
@@ -14,25 +15,25 @@ public class DatabaseConstants {
     }
 
     public static class UserTable {
-        public static final String ID = "id";
-        public static final String FIRST_NAME = "firstName";
-        public static final String LAST_NAME = "lastName";
-        public static final String EMAIL = "email";
-        public static final String PHONE = "phone";
-        public static final String USERNAME = "username";
-        public static final String GENDER = "gender";
-        public static final String PICTURE = "picture";
-        public static final String COUNTRY = "country";
-        public static final String PASSWORD = "password";
+        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_FIRST_NAME = "firstName";
+        public static final String COLUMN_LAST_NAME = "lastName";
+        public static final String COLUMN_EMAIL = "email";
+        public static final String COLUMN_PHONE = "phone";
+        public static final String COLUMN_USERNAME = "username";
+        public static final String COLUMN_GENDER = "gender";
+        public static final String COLUMN_PICTURE = "picture";
+        public static final String COLUMN_COUNTRY = "country";
+        public static final String COLUMN_PASSWORD = "password";
     }
 
     public static class AchievementTable {
-        public static final String ID = "id";
-        public static final String TITLE = "title";
-        public static final String DESCRIPTION = "description";
-        public static final String DAYS = "days";
-        public static final String TYPE = "type";
-        public static final String PUBLISHED = "published";
+        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_TITLE = "title";
+        public static final String COLUMN_DESCRIPTION = "description";
+        public static final String COLUMN_DAYS = "days";
+        public static final String COLUMN_TYPE = "type";
+        public static final String COLUMN_PUBLISHED = "published";
 
     }
 }
