@@ -1,18 +1,23 @@
 package com.andalus.lifeachievements.ui.home
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
 import com.andalus.lifeachievements.adapters.HomePagerAdapter
+import com.andalus.lifeachievements.views.activities.SearchActivity
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,5 +39,19 @@ class HomeFragment : Fragment() {
         tabLayout.getTabAt(1)?.text = "Friend Suggestions"
         tabLayout.getTabAt(2)?.text = "Notifications"
         return root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_feed, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_search -> {
+                startActivity(Intent(activity, SearchActivity::class.java))
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
