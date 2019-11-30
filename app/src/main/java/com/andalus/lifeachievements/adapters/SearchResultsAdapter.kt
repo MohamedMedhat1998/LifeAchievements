@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_user.view.*
 
-class SearchResultsAdapter(private val data: MutableList<MiniUser>) :
+class SearchResultsAdapter(val data: MutableList<MiniUser>) :
     RecyclerView.Adapter<SearchResultsAdapter.ResultHolder>() {
 
     lateinit var context: Context
@@ -32,6 +32,7 @@ class SearchResultsAdapter(private val data: MutableList<MiniUser>) :
     override fun onBindViewHolder(holder: ResultHolder, position: Int) {
         Glide.with(context)
             .load(data[position].picture)
+            .placeholder(R.drawable.ic_man)
             .apply(RequestOptions.centerCropTransform())
             .into(holder.ivProfilePicture)
         holder.tvName.text = data[position].name
