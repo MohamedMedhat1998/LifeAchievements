@@ -1,4 +1,4 @@
-query feed(
+query Feed(
     $skip:Int!,
     $limit:Int!
 ) {

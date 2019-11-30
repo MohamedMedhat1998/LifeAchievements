@@ -11,15 +11,15 @@
       {
         "kind": "OBJECT",
         "name": "Query",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "feed",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "data",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -51,6 +51,72 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "searchUsers",
+            "description": "",
+            "args": [
+              {
+                "name": "data",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "SearchUsersInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "PublicUser",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getUser",
+            "description": "",
+            "args": [
+              {
+                "name": "data",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "getUserInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "PublicUser",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -61,12 +127,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "FeedInput",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": [
           {
             "name": "skip",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -80,7 +146,7 @@
           },
           {
             "name": "limit",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -110,11 +176,11 @@
       {
         "kind": "OBJECT",
         "name": "FeedAchievements",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "author",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -130,7 +196,7 @@
           },
           {
             "name": "id",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -146,7 +212,7 @@
           },
           {
             "name": "title",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -162,7 +228,7 @@
           },
           {
             "name": "description",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -178,7 +244,7 @@
           },
           {
             "name": "days",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -202,7 +268,7 @@
           },
           {
             "name": "type",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -218,7 +284,7 @@
           },
           {
             "name": "completed",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -234,7 +300,7 @@
           },
           {
             "name": "published",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -250,7 +316,7 @@
           },
           {
             "name": "picture",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -266,7 +332,7 @@
           },
           {
             "name": "created_at",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -289,11 +355,11 @@
       {
         "kind": "OBJECT",
         "name": "PublicUser",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "id",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -309,7 +375,7 @@
           },
           {
             "name": "first_name",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -325,7 +391,7 @@
           },
           {
             "name": "last_name",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -341,7 +407,7 @@
           },
           {
             "name": "username",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -357,7 +423,7 @@
           },
           {
             "name": "rate",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -373,7 +439,7 @@
           },
           {
             "name": "gender",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -389,7 +455,7 @@
           },
           {
             "name": "picture",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -405,7 +471,7 @@
           },
           {
             "name": "created_at",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -448,20 +514,20 @@
       {
         "kind": "ENUM",
         "name": "Gender",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "MALE",
-            "description": null,
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "FEMALE",
-            "description": null,
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -481,20 +547,20 @@
       {
         "kind": "ENUM",
         "name": "Type",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "DO_IT",
-            "description": null,
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "GET_RID_OF",
-            "description": null,
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -502,17 +568,67 @@
         "possibleTypes": null
       },
       {
+        "kind": "INPUT_OBJECT",
+        "name": "SearchUsersInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "name",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "getUserInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "id",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "Mutation",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "createUser",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "data",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -539,11 +655,11 @@
           },
           {
             "name": "verifyRegister",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "data",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -570,11 +686,11 @@
           },
           {
             "name": "loginUser",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "data",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -601,11 +717,11 @@
           },
           {
             "name": "createAchievement",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "data",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -632,11 +748,11 @@
           },
           {
             "name": "createComment",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "data",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -663,11 +779,11 @@
           },
           {
             "name": "createReplay",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "data",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -694,11 +810,11 @@
           },
           {
             "name": "makeFriend",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "data",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -725,11 +841,11 @@
           },
           {
             "name": "unFriend",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "data",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -756,11 +872,11 @@
           },
           {
             "name": "publishAchievement",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "data",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -787,11 +903,11 @@
           },
           {
             "name": "unPublishAchievement",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "data",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -825,12 +941,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "CreateUserInput",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": [
           {
             "name": "first_name",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -844,7 +960,7 @@
           },
           {
             "name": "last_name",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -858,7 +974,7 @@
           },
           {
             "name": "username",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -872,7 +988,7 @@
           },
           {
             "name": "gender",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -886,7 +1002,7 @@
           },
           {
             "name": "phone",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -900,7 +1016,7 @@
           },
           {
             "name": "email",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -914,7 +1030,7 @@
           },
           {
             "name": "password",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -934,12 +1050,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "verifyRegisterInput",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": [
           {
             "name": "username",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -953,7 +1069,7 @@
           },
           {
             "name": "register_code",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -973,12 +1089,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "loginUserInput",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": [
           {
             "name": "username",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -992,7 +1108,7 @@
           },
           {
             "name": "password",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1012,11 +1128,11 @@
       {
         "kind": "OBJECT",
         "name": "CurrentUserType",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "phone",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1032,7 +1148,7 @@
           },
           {
             "name": "email",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1048,7 +1164,7 @@
           },
           {
             "name": "token",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1060,7 +1176,7 @@
           },
           {
             "name": "friends",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1084,7 +1200,7 @@
           },
           {
             "name": "updated_at",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1100,7 +1216,7 @@
           },
           {
             "name": "id",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1116,7 +1232,7 @@
           },
           {
             "name": "first_name",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1132,7 +1248,7 @@
           },
           {
             "name": "last_name",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1148,7 +1264,7 @@
           },
           {
             "name": "username",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1164,7 +1280,7 @@
           },
           {
             "name": "rate",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1180,7 +1296,7 @@
           },
           {
             "name": "gender",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1196,7 +1312,7 @@
           },
           {
             "name": "picture",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1212,7 +1328,7 @@
           },
           {
             "name": "created_at",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1235,12 +1351,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "CreateAchievementInput",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": [
           {
             "name": "title",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1254,7 +1370,7 @@
           },
           {
             "name": "description",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1268,7 +1384,7 @@
           },
           {
             "name": "days",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1282,7 +1398,7 @@
           },
           {
             "name": "type",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1296,7 +1412,7 @@
           },
           {
             "name": "published",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1316,11 +1432,11 @@
       {
         "kind": "OBJECT",
         "name": "PublicAchievement",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "id",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1336,7 +1452,7 @@
           },
           {
             "name": "title",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1352,7 +1468,7 @@
           },
           {
             "name": "description",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1368,7 +1484,7 @@
           },
           {
             "name": "days",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1392,7 +1508,7 @@
           },
           {
             "name": "type",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1408,7 +1524,7 @@
           },
           {
             "name": "completed",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1424,7 +1540,7 @@
           },
           {
             "name": "published",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1440,7 +1556,7 @@
           },
           {
             "name": "picture",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1456,7 +1572,7 @@
           },
           {
             "name": "created_at",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1479,12 +1595,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "CreateCommentInput",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": [
           {
             "name": "body",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1498,7 +1614,7 @@
           },
           {
             "name": "achievement",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1518,11 +1634,11 @@
       {
         "kind": "OBJECT",
         "name": "PublicComment",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "id",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1538,7 +1654,7 @@
           },
           {
             "name": "body",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1554,7 +1670,7 @@
           },
           {
             "name": "created_at",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1577,12 +1693,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "CreateReplayInput",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": [
           {
             "name": "body",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1596,7 +1712,7 @@
           },
           {
             "name": "comment",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1616,11 +1732,11 @@
       {
         "kind": "OBJECT",
         "name": "PublicReplay",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "id",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1636,7 +1752,7 @@
           },
           {
             "name": "body",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1652,7 +1768,7 @@
           },
           {
             "name": "created_at",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1675,12 +1791,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "UniqueInput",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": [
           {
             "name": "id",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2562,91 +2678,6 @@
               "ofType": null
             },
             "defaultValue": "\"No longer supported\""
-          }
-        ]
-      },
-      {
-        "name": "client",
-        "description": "Direct the client to resolve this field locally, either from the cache or local resolvers.",
-        "locations": [
-          "FIELD",
-          "FRAGMENT_DEFINITION",
-          "INLINE_FRAGMENT"
-        ],
-        "args": [
-          {
-            "name": "always",
-            "description": "When true, the client will never use the cache for this value. See\nhttps://www.apollographql.com/docs/react/essentials/local-state/#forcing-resolvers-with-clientalways-true",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ]
-      },
-      {
-        "name": "export",
-        "description": "Export this locally resolved field as a variable to be used in the remainder of this query. See\nhttps://www.apollographql.com/docs/react/essentials/local-state/#using-client-fields-as-variables",
-        "locations": [
-          "FIELD"
-        ],
-        "args": [
-          {
-            "name": "as",
-            "description": "The variable name to export this field as.",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ]
-      },
-      {
-        "name": "connection",
-        "description": "Specify a custom store key for this result. See\nhttps://www.apollographql.com/docs/react/advanced/caching/#the-connection-directive",
-        "locations": [
-          "FIELD"
-        ],
-        "args": [
-          {
-            "name": "key",
-            "description": "Specify the store key.",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "filter",
-            "description": "An array of query argument names to include in the generated custom store key.",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
           }
         ]
       }
