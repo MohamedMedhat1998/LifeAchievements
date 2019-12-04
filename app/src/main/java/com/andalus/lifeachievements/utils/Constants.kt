@@ -13,6 +13,7 @@ class Constants {
         const val ERROR_MESSAGE_KEY = "msg"
         const val ERROR_FIELD_KEY = "field"
         const val EMAIL_KEY = "email-key"
+        const val MINI_USER_ID_KEY = "mini-user-id"
         //Error-Types
         const val ERROR_FAILURE = "failure"
         //Response-values

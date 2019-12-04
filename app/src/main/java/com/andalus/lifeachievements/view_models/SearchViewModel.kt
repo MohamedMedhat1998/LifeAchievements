@@ -10,6 +10,8 @@ import com.andalus.lifeachievements.repositories.TokenRepository
 
 class SearchViewModel(private val tokenRepository: TokenRepository) : ViewModel() {
 
+    private lateinit var searchKeyword: String
+
     private val searchUsersQuery = MutableLiveData<SearchUsersQuery>()
     val response: LiveData<Response<SearchUsersQuery.Data>> =
         Transformations.switchMap(searchUsersQuery) {
@@ -46,7 +48,18 @@ class SearchViewModel(private val tokenRepository: TokenRepository) : ViewModel(
         }
     }
 
+    fun refreshWithNewToken(token: String) {
+        state.value = State.LoadingState
+        tokenRepository.setToken(token)
+        search(searchKeyword)
+    }
+
+    fun resetToken(){
+        tokenRepository.setToken("")
+    }
+
     fun search(keyword: String) {
+        this.searchKeyword = keyword
         state.value = State.LoadingState
         searchUsersQuery.value = SearchUsersQuery.builder().name(keyword).build()
     }

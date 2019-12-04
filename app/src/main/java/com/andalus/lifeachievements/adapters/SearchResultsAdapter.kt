@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_user.view.*
 
-class SearchResultsAdapter(val data: MutableList<MiniUser>) :
+class SearchResultsAdapter(val data: MutableList<MiniUser>, val onClick: (MiniUser) -> Unit) :
     RecyclerView.Adapter<SearchResultsAdapter.ResultHolder>() {
 
     lateinit var context: Context
@@ -48,5 +48,11 @@ class SearchResultsAdapter(val data: MutableList<MiniUser>) :
         val ivProfilePicture: ImageView = itemView.ivProfilePicture
         val tvName: TextView = itemView.tvName
         val tvUsername: TextView = itemView.tvUsername
+
+        init {
+            itemView.setOnClickListener {
+                onClick.invoke(data[adapterPosition])
+            }
+        }
     }
 }
