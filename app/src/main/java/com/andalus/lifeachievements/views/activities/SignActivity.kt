@@ -63,4 +63,11 @@ class SignActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        if (signActivityViewModel.token.isEmpty())
+            finish()
+        else
+            super.onBackPressed()
+    }
+
 }
