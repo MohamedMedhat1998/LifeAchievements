@@ -8,8 +8,8 @@ import com.andalus.lifeachievements.models.User
 import com.andalus.lifeachievements.networking.QueryRequest
 import com.andalus.lifeachievements.repositories.TokenRepository
 
-class ProfileViewModel(private val tokenRepository: TokenRepository, private val id: String) :
-    ViewModel() {
+class ProfileViewModel(tokenRepository: TokenRepository, private val id: String) :
+    TokenViewModel(tokenRepository) {
 
     private val getUserQuery = MutableLiveData<GetUserQuery>()
     val response: LiveData<Response<GetUserQuery.Data>> = Transformations.switchMap(getUserQuery) {
@@ -50,14 +50,10 @@ class ProfileViewModel(private val tokenRepository: TokenRepository, private val
         }
     }
 
-    fun refreshWithNewToken(token : String){
+    override fun refreshWithNewToken(token : String){
         state.value = State.LoadingState
         tokenRepository.setToken(token)
         getUserQuery.value = GetUserQuery.builder().id(id).build()
-    }
-
-    fun resetToken(){
-        tokenRepository.setToken("")
     }
 
 }

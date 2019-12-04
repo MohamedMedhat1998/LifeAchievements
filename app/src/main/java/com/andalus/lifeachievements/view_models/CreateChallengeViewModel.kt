@@ -9,7 +9,7 @@ import com.andalus.lifeachievements.networking.MutationRequest
 import com.andalus.lifeachievements.repositories.TokenRepository
 import com.andalus.lifeachievements.utils.TypeConverter
 
-class CreateChallengeViewModel(private val tokenRepository: TokenRepository) : ViewModel() {
+class CreateChallengeViewModel(tokenRepository: TokenRepository) : TokenViewModel(tokenRepository) {
 
     private lateinit var achievement: Achievement
 
@@ -46,13 +46,10 @@ class CreateChallengeViewModel(private val tokenRepository: TokenRepository) : V
                 .build()
     }
 
-    fun refreshWithNewToken(token: String) {
+    override fun refreshWithNewToken(token: String) {
         state.value = State.LoadingState
         tokenRepository.setToken(token)
         createAchievement(achievement)
     }
 
-    fun resetToken() {
-        tokenRepository.setToken("")
-    }
 }

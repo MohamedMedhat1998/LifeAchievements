@@ -15,10 +15,10 @@ private const val INITIAL_SKIP = 0
 private const val INITIAL_LIMIT = 10
 
 class FeedViewModel(
-    private val tokenRepository: TokenRepository,
+    tokenRepository: TokenRepository,
     private val networkStateTracer: NetworkStateTracer,
     private val database: PostsDatabase
-) : ViewModel() {
+) : TokenViewModel(tokenRepository) {
 
     private var feedQuery = MutableLiveData<FeedQuery>()
     public val response: LiveData<Response<FeedQuery.Data>> = Transformations.switchMap(feedQuery) {
@@ -92,5 +92,9 @@ class FeedViewModel(
             }
         }
 
+    }
+
+    override fun refreshWithNewToken(token: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

@@ -1,6 +1,9 @@
 package com.andalus.lifeachievements.view_models
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.andalus.lifeachievements.SearchUsersQuery
 import com.andalus.lifeachievements.enums.State
 import com.andalus.lifeachievements.models.MiniUser
@@ -8,7 +11,7 @@ import com.andalus.lifeachievements.models.Response
 import com.andalus.lifeachievements.networking.QueryRequest
 import com.andalus.lifeachievements.repositories.TokenRepository
 
-class SearchViewModel(private val tokenRepository: TokenRepository) : ViewModel() {
+class SearchViewModel(tokenRepository: TokenRepository) : TokenViewModel(tokenRepository) {
 
     private lateinit var searchKeyword: String
 
@@ -48,14 +51,10 @@ class SearchViewModel(private val tokenRepository: TokenRepository) : ViewModel(
         }
     }
 
-    fun refreshWithNewToken(token: String) {
+    override fun refreshWithNewToken(token: String) {
         state.value = State.LoadingState
         tokenRepository.setToken(token)
         search(searchKeyword)
-    }
-
-    fun resetToken(){
-        tokenRepository.setToken("")
     }
 
     fun search(keyword: String) {
