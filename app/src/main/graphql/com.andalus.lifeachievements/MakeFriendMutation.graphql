@@ -1,0 +1,8 @@
+mutation MakeFriend($id:String!){
+    makeFriend(data: {id: $id}){
+        id
+        first_name
+        last_name
+        username
+    }
+}

@@ -10,7 +10,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
 import com.andalus.lifeachievements.repositories.TokenRepository
 import com.andalus.lifeachievements.utils.Constants
+import com.andalus.lifeachievements.view_models.FollowViewModel
 import com.andalus.lifeachievements.view_models.ProfileViewModel
+import com.andalus.lifeachievements.view_models_factories.FollowViewModelFacory
 import com.andalus.lifeachievements.view_models_factories.ProfileViewModelFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -19,8 +21,13 @@ import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ProfileViewModel
-    private lateinit var viewModelFactory: ProfileViewModelFactory
+    private lateinit var profileViewModel: ProfileViewModel
+    private lateinit var profileViewModelFactory: ProfileViewModelFactory
+
+    private lateinit var followViewModel: FollowViewModel
+    private lateinit var followViewModelFactory: FollowViewModelFacory
+
+    val tokenRepository = TokenRepository(this)
 
     private var currentError = ""
 
@@ -45,21 +52,27 @@ class ProfileActivity : AppCompatActivity() {
         })*/
 
         val id = intent.extras?.getString(Constants.MINI_USER_ID_KEY)
-        viewModelFactory = ProfileViewModelFactory(TokenRepository(this), id!!)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ProfileViewModel::class.java)
 
-        viewModel.response.observe(this, Observer {
+        profileViewModelFactory = ProfileViewModelFactory(tokenRepository, id!!)
+        profileViewModel =
+            ViewModelProviders.of(this, profileViewModelFactory).get(ProfileViewModel::class.java)
+
+        followViewModelFactory = FollowViewModelFacory(tokenRepository)
+        followViewModel =
+            ViewModelProviders.of(this, followViewModelFactory).get(FollowViewModel::class.java)
+
+        profileViewModel.response.observe(this, Observer {
             if (it.errors.isNotEmpty()) {
                 it.errors.forEach { error ->
                     when (error.field) {
                         Constants.ERROR_INVALID_TOKEN -> {
                             currentError = ""
-                            viewModel.refreshWithNewToken(error.message)
+                            profileViewModel.refreshWithNewToken(error.message)
                             Log.e("TOKEN", "refreshing with a new token :${error.message}")
                         }
                         Constants.ERROR_INVALID_USER -> {
                             currentError = error.message
-                            viewModel.resetToken()
+                            profileViewModel.resetToken()
                             Toast.makeText(
                                 this,
                                 getString(R.string.session_expired),
@@ -76,12 +89,15 @@ class ProfileActivity : AppCompatActivity() {
             }
         })
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        fab.setOnClickListener {
+            followViewModel.follow(id)
         }
 
-        viewModel.user.observe(this, Observer {
+        followViewModel.response.observe(this, Observer {
+
+        })
+
+        profileViewModel.user.observe(this, Observer {
             toolbar_layout.title = getString(R.string.owner_name, it.firstName, it.lastName)
             Glide.with(this)
                 .load(it.picture)
