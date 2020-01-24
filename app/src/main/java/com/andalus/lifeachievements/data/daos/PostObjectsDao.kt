@@ -21,7 +21,7 @@ class PostObjectsDao(private val postsDatabase: PostsDatabase) {
         }
     }
 
-    suspend fun getPostObjects(): List<PostObject> {
+    fun getPostObjects(): List<PostObject> {
         val cursor =
             postsDatabase.openHelper.readableDatabase.query("SELECT * FROM Post,User,Achievement WHERE Post.ownerId = User.id AND Post.achievementId = Achievement.id")
 
