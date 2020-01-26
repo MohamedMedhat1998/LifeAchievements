@@ -51,7 +51,7 @@
             app:srcCompat="@drawable/ic_correct" />
 
         <ImageView
-            android:id="@+id/ivAchievementBadge"
+            android:id="@+id/ivBadgeIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -69,13 +69,13 @@
             android:ellipsize="end"
             android:maxLines="10"
             android:text="I have mad a challenge that I go to the GYM for 30 minutes every day for a week. And Finally I did it. The most important thing is to be motivated guys.\n Don't listen to any one who is trying to make you disappointed. And remember, DO IT! Bla Bla Bla Bla "
-            app:layout_constraintBottom_toBottomOf="@+id/ivAchievementBadge"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBadgeIcon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivAchievementBadge"
-            app:layout_constraintTop_toTopOf="@+id/ivAchievementBadge" />
+            app:layout_constraintStart_toEndOf="@+id/ivBadgeIcon"
+            app:layout_constraintTop_toTopOf="@+id/ivBadgeIcon" />
 
         <TextView
-            android:id="@+id/tvAchievementTitle"
+            android:id="@+id/tvBadgeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -83,9 +83,9 @@
             android:textColor="@color/green800"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/ivAchievementBadge"
-            app:layout_constraintStart_toStartOf="@+id/ivAchievementBadge"
-            app:layout_constraintTop_toBottomOf="@+id/ivAchievementBadge" />
+            app:layout_constraintEnd_toEndOf="@+id/ivBadgeIcon"
+            app:layout_constraintStart_toStartOf="@+id/ivBadgeIcon"
+            app:layout_constraintTop_toBottomOf="@+id/ivBadgeIcon" />
 
         <TextView
             android:id="@+id/tvPostLikes"
@@ -95,7 +95,7 @@
             android:layout_marginTop="16dp"
             android:text="25 Likes"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAchievementTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/tvBadgeTitle" />
 
         <Button
             android:id="@+id/btnLike"
@@ -141,7 +141,7 @@
             android:layout_marginEnd="8dp"
             android:text="2 shares"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAchievementTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/tvBadgeTitle" />
 
         <TextView
             android:id="@+id/tvOwnerUsername"

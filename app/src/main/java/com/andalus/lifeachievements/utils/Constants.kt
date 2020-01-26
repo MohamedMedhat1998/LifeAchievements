@@ -36,9 +36,14 @@ class Constants {
         const val PASSWORD_LENGTH_MESSAGE = "Password length cannot be less than 6 characters"
         const val PASSWORD_NO_MATCH_MESSAGE = "Password didn't match"
         const val REQUIRED_MESSAGE = "This field is required"
-        //Preferences
-        const val PREFERENCES_FILE_NAME = "token-cache"
+        //preferences
+        const val TOKEN_PREFERENCES_FILE_NAME = "token-cache"
         const val TOKEN_KEY = "token"
+        const val USER_PREFERENCES_FILE_NAME = "user-cache"
+        const val PICTURE_KEY = "picture"
+        const val ID_KEY = "id"
+        const val NAME_KEY = "name"
+        const val USERNAME_KEY = "username"
     }
 
 }

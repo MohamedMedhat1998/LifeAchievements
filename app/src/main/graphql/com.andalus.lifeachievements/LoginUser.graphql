@@ -12,5 +12,6 @@ mutation Login (
         first_name
         last_name
         username
+        picture
     }
 }

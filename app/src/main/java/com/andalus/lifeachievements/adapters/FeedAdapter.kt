@@ -67,9 +67,9 @@ class FeedAdapter(private val posts: MutableList<PostObject>) :
         val tvOwnerUsername: TextView = itemView.tvOwnerUsername
         val tvPostDate: TextView = itemView.tvPostDate
         val ivAchievementState = itemView.ivAchievementState
-        val ivAchievementBadge: ImageView = itemView.ivAchievementBadge
+        val ivAchievementBadge: ImageView = itemView.ivBadgeIcon
         val tvAchievementDescription: TextView = itemView.tvAchievementDescription
-        val tvAchievementTitle: TextView = itemView.tvAchievementTitle
+        val tvAchievementTitle: TextView = itemView.tvBadgeTitle
         val tvPostLikes: TextView = itemView.tvPostLikes
         val tvPostComments: TextView = itemView.tvPostComments
         val tvPostShares: TextView = itemView.tvPostShares

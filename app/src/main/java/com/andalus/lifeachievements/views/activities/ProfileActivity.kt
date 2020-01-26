@@ -3,11 +3,14 @@ package com.andalus.lifeachievements.views.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
+import com.andalus.lifeachievements.repositories.LoggedUserRepository
 import com.andalus.lifeachievements.repositories.TokenRepository
 import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.view_models.FollowViewModel
@@ -16,9 +19,10 @@ import com.andalus.lifeachievements.view_models_factories.FollowViewModelFacory
 import com.andalus.lifeachievements.view_models_factories.ProfileViewModelFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_profile.*
 
+
+//TODO distinguish between the owner profile activity and the other users profile activity
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var profileViewModel: ProfileViewModel
@@ -30,6 +34,10 @@ class ProfileActivity : AppCompatActivity() {
     val tokenRepository = TokenRepository(this)
 
     private var currentError = ""
+
+    private var flagLoggedUser = false
+
+    private lateinit var penEdit: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +58,10 @@ class ProfileActivity : AppCompatActivity() {
                 Toast.makeText(baseContext,"Start",Toast.LENGTH_SHORT).show()
             }
         })*/
-
+        //TODO check if the id == the current user id
         val id = intent.extras?.getString(Constants.MINI_USER_ID_KEY)
+        if (id == LoggedUserRepository(this).getUser().id)
+            toggleLoggedUserProfile()
 
         profileViewModelFactory = ProfileViewModelFactory(tokenRepository, id!!)
         profileViewModel =
@@ -98,12 +108,40 @@ class ProfileActivity : AppCompatActivity() {
         })
 
         profileViewModel.user.observe(this, Observer {
-            toolbar_layout.title = getString(R.string.owner_name, it.firstName, it.lastName)
-            Glide.with(this)
-                .load(it.picture)
-                .placeholder(R.drawable.ic_man)
-                .apply(RequestOptions.centerCropTransform())
-                .into(ivProfilePicture)
+            if (!flagLoggedUser) {
+                toolbar_layout.title = getString(R.string.owner_name, it.firstName, it.lastName)
+                Glide.with(this)
+                    .load(it.picture)
+                    .placeholder(R.drawable.ic_man)
+                    .apply(RequestOptions.centerCropTransform())
+                    .into(ivProfilePicture)
+            }
         })
     }
+
+    private fun toggleLoggedUserProfile() {
+        val loggedUser = LoggedUserRepository(this).getUser()
+        flagLoggedUser = true
+        //TODO fab
+        fab.hide()
+        //TODO edit profile button
+        //TODO current active
+        //TODO name, username, pic local
+        toolbar_layout.title = loggedUser.name
+        Glide.with(this)
+            .load(loggedUser.picture)
+            .placeholder(R.drawable.ic_man)
+            .apply(RequestOptions.centerCropTransform())
+            .into(ivProfilePicture)
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_profile, menu)
+            penEdit = menu?.findItem(R.id.item_edit_profile)!!
+        if (!flagLoggedUser)
+            penEdit.isVisible = false
+        return super.onCreateOptionsMenu(menu)
+    }
+
 }

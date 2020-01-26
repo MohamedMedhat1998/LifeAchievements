@@ -2,11 +2,15 @@ package com.andalus.lifeachievements.view_models_factories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.andalus.lifeachievements.repositories.LoggedUserRepository
 import com.andalus.lifeachievements.repositories.TokenRepository
 import com.andalus.lifeachievements.view_models.SignInViewModel
 
-class SignInViewModelFactory(private val tokenRepository: TokenRepository) : ViewModelProvider.Factory {
+class SignInViewModelFactory(
+    private val tokenRepository: TokenRepository,
+    private val userRepository: LoggedUserRepository
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return SignInViewModel(tokenRepository) as T
+        return SignInViewModel(tokenRepository,userRepository) as T
     }
 }

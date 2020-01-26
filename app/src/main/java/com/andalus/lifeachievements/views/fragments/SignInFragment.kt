@@ -14,8 +14,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.andalus.lifeachievements.R
 import com.andalus.lifeachievements.behaviors.CanResetErrors
 import com.andalus.lifeachievements.behaviors.CanValidateNonEmpty
-import com.andalus.lifeachievements.repositories.TokenRepository
 import com.andalus.lifeachievements.enums.State
+import com.andalus.lifeachievements.repositories.LoggedUserRepository
+import com.andalus.lifeachievements.repositories.TokenRepository
 import com.andalus.lifeachievements.utils.Constants
 import com.andalus.lifeachievements.utils.Functions
 import com.andalus.lifeachievements.view_models.SignActivityViewModel
@@ -47,7 +48,9 @@ class SignInFragment : Fragment(), CanValidateNonEmpty, CanResetErrors {
         val tokenRepository =
             TokenRepository(context!!)
 
-        val signInViewModelFactory = SignInViewModelFactory(tokenRepository)
+        val userRepository = LoggedUserRepository(context!!)
+
+        val signInViewModelFactory = SignInViewModelFactory(tokenRepository, userRepository)
 
         signInViewModel =
             ViewModelProviders.of(this, signInViewModelFactory).get(SignInViewModel::class.java)
