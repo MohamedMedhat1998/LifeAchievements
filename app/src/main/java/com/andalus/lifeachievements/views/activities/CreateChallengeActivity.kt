@@ -28,6 +28,7 @@ class CreateChallengeActivity : AppCompatActivity(), CanValidateNonEmpty, CanRes
     private var currentError = ""
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_challenge)
