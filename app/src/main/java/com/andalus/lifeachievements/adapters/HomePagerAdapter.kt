@@ -3,7 +3,7 @@ package com.andalus.lifeachievements.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.andalus.lifeachievements.views.fragments.FeedFragment
+import com.andalus.lifeachievements.ui.feed.FeedFragment
 import com.andalus.lifeachievements.fragments.FriendSuggestions
 import com.andalus.lifeachievements.fragments.Notifications
 
