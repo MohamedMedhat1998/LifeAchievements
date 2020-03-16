@@ -20,7 +20,7 @@ class ProfileViewModel(tokenRepository: TokenRepository, private val id: String)
     }
 
     val user = MediatorLiveData<User>()
-    val state = MediatorLiveData<State>()
+    val state = MutableLiveData<State>()
 
     init {
         state.value = State.LoadingState

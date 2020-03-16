@@ -22,7 +22,7 @@ class FeedViewModel(
 ) : TokenViewModel(tokenRepository) {
 
     private var feedQuery = MutableLiveData<FeedQuery>()
-    public val response: LiveData<Response<FeedQuery.Data>> = Transformations.switchMap(feedQuery) {
+    val response: LiveData<Response<FeedQuery.Data>> = Transformations.switchMap(feedQuery) {
         QueryRequest<FeedQuery.Data, FeedQuery.Variables, FeedQuery>(tokenRepository).sendRequest(it)
     }
 

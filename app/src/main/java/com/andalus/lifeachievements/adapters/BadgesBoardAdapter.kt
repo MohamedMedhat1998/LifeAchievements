@@ -12,7 +12,7 @@ import com.andalus.lifeachievements.models.Badge
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_badge.view.*
 
-class BadgesBoardAdapter(private var badges: MutableList<Badge> = mutableListOf()) :
+class BadgesBoardAdapter(var data: MutableList<Badge> = mutableListOf()) :
     RecyclerView.Adapter<BadgesBoardAdapter.BadgeViewHolder>() {
 
     private lateinit var context: Context
@@ -24,17 +24,13 @@ class BadgesBoardAdapter(private var badges: MutableList<Badge> = mutableListOf(
     }
 
     override fun onBindViewHolder(holder: BadgeViewHolder, position: Int) {
-        holder.tvBadgeTitle.text = badges[position].title
-        Glide.with(context).load(badges[position].icon).placeholder(R.drawable.ic_medal)
+        holder.tvBadgeTitle.text = data[position].title
+        Glide.with(context).load(data[position].icon).placeholder(R.drawable.ic_medal)
             .into(holder.ivBadgeIcon)
     }
 
     override fun getItemCount(): Int {
-        return badges.size
-    }
-
-    public fun setData(data: MutableList<Badge>) {
-        badges = data
+        return data.size
     }
 
     inner class BadgeViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -1,0 +1,13 @@
+query UserAchievements($active:Boolean!){
+    userAchievements(data:{active:$active}){
+        id
+        title
+        description
+        days
+        type
+        completed
+        published
+        picture
+        created_at
+    }
+}

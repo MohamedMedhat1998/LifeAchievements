@@ -9,6 +9,7 @@ class Constants {
         const val SERVER_URL = "https://protected-basin-72892.herokuapp.com/"
         const val TOKEN_HEADER = "Authorization"
         const val TOKEN_BEARER = "Bearer"
+        const val TIME_OUT_MS = 20000L
         //Keys
         const val ERROR_MESSAGE_KEY = "msg"
         const val ERROR_FIELD_KEY = "field"
